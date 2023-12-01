@@ -102,13 +102,12 @@ public class ventanaLogin extends javax.swing.JFrame {
                         .addComponent(jLabel3)))
                 .addGap(288, 288, 288))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(369, 369, 369)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(393, 393, 393)
-                        .addComponent(jButton1)))
+                .addGap(393, 393, 393)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(369, 369, 369)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -170,23 +169,23 @@ public class ventanaLogin extends javax.swing.JFrame {
             infoRol = rs.getString(1).split("`");
             rol=infoRol[1];
             if(rol.equals("Administrador_Inventarios")){
-                VentanaPrincipalAdministradorInventarios VentanaPrincipal = new VentanaPrincipalAdministradorInventarios();
+                ventanaPrincipalAdministradorInventarios VentanaPrincipal = new ventanaPrincipalAdministradorInventarios();
                 VentanaPrincipal.setVisible(true); 
             } 
             if(rol.equals("Cuidador")){
-                VentanaPrincipalCuidador VentanaPrincipal = new ventanaPrincipalCuidador();
+                ventanaPrincipalCuidador VentanaPrincipal = new ventanaPrincipalCuidador();
                 VentanaPrincipal.setVisible(true); 
             }
             if(rol.equals("Aseo")){
-                VentanaPrincipalAseo VentanaPrincipal = new VentanaPrincipalAseo();
+                ventanaPrincipalAseo VentanaPrincipal = new ventanaPrincipalAseo();
                 VentanaPrincipal.setVisible(true); 
             }
             if(rol.equals("Celador")){
-                VentanaPrincipalCelador VentanaPrincipal = new VentanaPrincipalCelador();
+                ventanaPrincipalCelador VentanaPrincipal = new ventanaPrincipalCelador();
                 VentanaPrincipal.setVisible(true); 
             }
             if(rol.equals("Atencion_Al_Cliente")){
-                VentanaPrincipalAtencionAlCliente VentanaPrincipal = new VentanaPrincipalAtencionAlCliente();
+                ventanaPrincipalAtencionAlCliente VentanaPrincipal = new ventanaPrincipalAtencionAlCliente();
                 VentanaPrincipal.setVisible(true); 
             }
             if(rol.equals("Administrador_Jefe")){
@@ -194,7 +193,7 @@ public class ventanaLogin extends javax.swing.JFrame {
                 VentanaPrincipal.setVisible(true); 
             }
             if(rol.equals("Administrador_Reservas")){
-                VentanaPrincipalAdministradorReservas VentanaPrincipal = new VentanaPrincipalAdministradorReservas();
+                ventanaPrincipalAdministradorReservas VentanaPrincipal = new ventanaPrincipalAdministradorReservas();
                 VentanaPrincipal.setVisible(true); 
             }
                     
