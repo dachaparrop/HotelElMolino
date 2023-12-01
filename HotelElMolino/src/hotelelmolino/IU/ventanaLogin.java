@@ -11,7 +11,7 @@ import java.sql.*;
  */
 public class ventanaLogin extends javax.swing.JFrame {
     private static Connection conexion;
-    private static String bd;
+    private static String bd = "hotel";
     private static String user;
     private static String password;
     private static String host = "localhost";
@@ -147,6 +147,18 @@ public class ventanaLogin extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+        user = jTextField1.getText();
+        password = jPasswordField1.getText();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conexion = DriverManager.getConnection(server, user, password);
+            System.out.println("ConexiÃ3n a base de datos " + server + " ... OK");
+            
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Error cargando el Driver MySQL JDBC ... FAIL");
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar conexion con " + server + " ... FAIL");
+        }
 
         this.dispose();
         ventanaPrincipal VentanaPrincipal = new ventanaPrincipal();
