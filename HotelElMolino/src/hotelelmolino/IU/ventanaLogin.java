@@ -4,6 +4,7 @@
  */
 package hotelelmolino.IU;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -90,22 +91,24 @@ public class ventanaLogin extends javax.swing.JFrame {
                 .addGap(0, 253, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(220, 220, 220))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(369, 369, 369)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(150, 150, 150))
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jTextField1)
                         .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3)))
                 .addGap(288, 288, 288))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(369, 369, 369)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(393, 393, 393)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,18 +156,21 @@ public class ventanaLogin extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             conexion = DriverManager.getConnection(server, user, password);
             System.out.println("ConexiÃ3n a base de datos " + server + " ... OK");
-            
+            this.dispose();
+            ventanaPrincipal VentanaPrincipal = new ventanaPrincipal();
+            VentanaPrincipal.setVisible(true);            
         } catch (ClassNotFoundException ex) {
             System.out.println("Error cargando el Driver MySQL JDBC ... FAIL");
+            JOptionPane.showMessageDialog(null, "No se pudo hacer la conexión, revisa los datos ingresados.");
         } catch (SQLException ex) {
-            System.out.println("Imposible realizar conexion con " + server + " ... FAIL");
-        }
-
-        this.dispose();
-        ventanaPrincipal VentanaPrincipal = new ventanaPrincipal();
-        VentanaPrincipal.setVisible(true);
+            JOptionPane.showMessageDialog(null,"Imposible realizar conexion con " + server + " ... FAIL");
+        }        
     }//GEN-LAST:event_jButton1MouseClicked
 
+    public String getUser(){
+        return user;
+    }
+    
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
