@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author angie
  */
-public class ventanaLogin extends javax.swing.JFrame {
+public class VentanaLogin extends javax.swing.JFrame {
     private static Connection conexion;
     private static String bd = "hotel";
     private static String user;
@@ -22,7 +22,7 @@ public class ventanaLogin extends javax.swing.JFrame {
     /**
      * Creates new form ventanaLogin
      */
-    public ventanaLogin() {
+    public VentanaLogin() {
         initComponents();
     }
 
@@ -170,9 +170,33 @@ public class ventanaLogin extends javax.swing.JFrame {
             infoRol = rs.getString(1).split("`");
             rol=infoRol[1];
             if(rol.equals("Administrador_Inventarios")){
-                ventanaPrincipal VentanaPrincipal = new ventanaPrincipal();
+                VentanaPrincipalAdministradorInventarios VentanaPrincipal = new VentanaPrincipalAdministradorInventarios();
                 VentanaPrincipal.setVisible(true); 
-            }           
+            } 
+            if(rol.equals("Cuidador")){
+                VentanaPrincipalCuidador VentanaPrincipal = new ventanaPrincipalCuidador();
+                VentanaPrincipal.setVisible(true); 
+            }
+            if(rol.equals("Aseo")){
+                VentanaPrincipalAseo VentanaPrincipal = new VentanaPrincipalAseo();
+                VentanaPrincipal.setVisible(true); 
+            }
+            if(rol.equals("Celador")){
+                VentanaPrincipalCelador VentanaPrincipal = new VentanaPrincipalCelador();
+                VentanaPrincipal.setVisible(true); 
+            }
+            if(rol.equals("Atencion_Al_Cliente")){
+                VentanaPrincipalAtencionAlCliente VentanaPrincipal = new VentanaPrincipalAtencionAlCliente();
+                VentanaPrincipal.setVisible(true); 
+            }
+            if(rol.equals("Administrador_Jefe")){
+                VentanaPrincipalAdministradorJefe VentanaPrincipal = new VentanaPrincipalAdministradorJefe();
+                VentanaPrincipal.setVisible(true); 
+            }
+            if(rol.equals("Administrador_Reservas")){
+                VentanaPrincipalAdministradorReservas VentanaPrincipal = new VentanaPrincipalAdministradorReservas();
+                VentanaPrincipal.setVisible(true); 
+            }
                     
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
@@ -217,20 +241,21 @@ public class ventanaLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ventanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ventanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ventanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ventanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ventanaLogin().setVisible(true);
+                new VentanaLogin().setVisible(true);
             }
         });
     }
