@@ -9,7 +9,7 @@ package hotelelmolino.IU;
  * @author David
  */
 public class ventanaPrincipalAdministradorInventarios extends javax.swing.JFrame {
-
+    ventanaLogin ventanalogin = new ventanaLogin();
     /**
      * Creates new form ventanaPrincipalAdministradorInventarios
      */
