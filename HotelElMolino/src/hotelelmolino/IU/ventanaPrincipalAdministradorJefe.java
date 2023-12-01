@@ -8,12 +8,12 @@ package hotelelmolino.IU;
  *
  * @author David
  */
-public class VentanaPrincipalAdministradorJefe extends javax.swing.JFrame {
-    VentanaLogin ventanalogin = new VentanaLogin();
+public class ventanaPrincipalAdministradorJefe extends javax.swing.JFrame {
+    ventanaLogin ventanalogin = new ventanaLogin();
     /**
      * Creates new form ventanaPrincipal
      */
-    public VentanaPrincipalAdministradorJefe() {
+    public ventanaPrincipalAdministradorJefe() {
         initComponents();
     }
 
@@ -132,14 +132,18 @@ public class VentanaPrincipalAdministradorJefe extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipalAdministradorJefe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaPrincipalAdministradorJefe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipalAdministradorJefe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaPrincipalAdministradorJefe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipalAdministradorJefe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaPrincipalAdministradorJefe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipalAdministradorJefe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaPrincipalAdministradorJefe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -148,7 +152,7 @@ public class VentanaPrincipalAdministradorJefe extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaPrincipalAdministradorJefe().setVisible(true);
+                new ventanaPrincipalAdministradorJefe().setVisible(true);
             }
         });
     }

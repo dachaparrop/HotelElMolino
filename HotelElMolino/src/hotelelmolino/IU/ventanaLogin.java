@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author angie
  */
-public class VentanaLogin extends javax.swing.JFrame {
+public class ventanaLogin extends javax.swing.JFrame {
     private static Connection conexion;
     private static String bd = "hotel";
     private static String user;
@@ -22,7 +22,7 @@ public class VentanaLogin extends javax.swing.JFrame {
     /**
      * Creates new form ventanaLogin
      */
-    public VentanaLogin() {
+    public ventanaLogin() {
         initComponents();
     }
 
@@ -190,7 +190,7 @@ public class VentanaLogin extends javax.swing.JFrame {
                 VentanaPrincipal.setVisible(true); 
             }
             if(rol.equals("Administrador_Jefe")){
-                VentanaPrincipalAdministradorJefe VentanaPrincipal = new VentanaPrincipalAdministradorJefe();
+                ventanaPrincipalAdministradorJefe VentanaPrincipal = new ventanaPrincipalAdministradorJefe();
                 VentanaPrincipal.setVisible(true); 
             }
             if(rol.equals("Administrador_Reservas")){
@@ -241,21 +241,23 @@ public class VentanaLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaLogin().setVisible(true);
+                new ventanaLogin().setVisible(true);
             }
         });
     }
