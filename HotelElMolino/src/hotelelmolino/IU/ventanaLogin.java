@@ -14,6 +14,7 @@ public class ventanaLogin extends javax.swing.JFrame {
     private static Connection conexion;
     private static String bd = "hotel";
     private static String user;
+    private static String rol;
     private static String password;
     private static String host = "localhost";
     private static String server = "jdbc:mysql://" + host + "/" + bd;
@@ -157,6 +158,20 @@ public class ventanaLogin extends javax.swing.JFrame {
             conexion = DriverManager.getConnection(server, user, password);
             System.out.println("ConexiÃ3n a base de datos " + server + " ... OK");
             this.dispose();
+            //realizar consulta 
+        try {
+// Preparamos la consulta 
+            Statement s = conexion.createStatement();
+            ResultSet rs = s.executeQuery("SHOW GRANTS FOR '"+user+"'@'localhost';");
+// Recorremos el resultado, mientras haya registros para leer, y escribimos el resultado en pantalla.
+            rs.next();
+            rs.next();
+            String[] infoRol=new String[100];
+            infoRol = rs.getString(1).split("`");
+            rol=infoRol[1];
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }        
             ventanaPrincipal VentanaPrincipal = new ventanaPrincipal();
             VentanaPrincipal.setVisible(true);            
         } catch (ClassNotFoundException ex) {
