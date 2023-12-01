@@ -169,11 +169,14 @@ public class ventanaLogin extends javax.swing.JFrame {
             String[] infoRol=new String[100];
             infoRol = rs.getString(1).split("`");
             rol=infoRol[1];
+            if(rol.equals("Administrador_Inventarios")){
+                ventanaPrincipal VentanaPrincipal = new ventanaPrincipal();
+                VentanaPrincipal.setVisible(true); 
+            }           
+                    
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-            ventanaPrincipal VentanaPrincipal = new ventanaPrincipal();
-            VentanaPrincipal.setVisible(true);            
+        }                   
         } catch (ClassNotFoundException ex) {
             System.out.println("Error cargando el Driver MySQL JDBC ... FAIL");
             JOptionPane.showMessageDialog(null, "No se pudo hacer la conexión, revisa los datos ingresados.");
@@ -184,6 +187,9 @@ public class ventanaLogin extends javax.swing.JFrame {
 
     public String getUser(){
         return user;
+    }
+    public String getRol(){
+        return rol;
     }
     
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
