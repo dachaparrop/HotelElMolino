@@ -16,6 +16,7 @@ public class ventanaLogin extends javax.swing.JFrame {
     private static String user;
     private static String rol;
     private static String password;
+    private static String tabla;
     private static String host = "localhost";
     private static String server = "jdbc:mysql://" + host + "/" + bd;
 
@@ -156,9 +157,9 @@ public class ventanaLogin extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             conexion = DriverManager.getConnection(server, user, password);
             System.out.println("ConexiÃ3n a base de datos " + server + " ... OK");
-            this.dispose();
             //realizar consulta 
         try {
+            this.dispose();
 // Preparamos la consulta 
             Statement s = conexion.createStatement();
             ResultSet rs = s.executeQuery("SHOW GRANTS FOR '"+user+"'@'localhost';");
@@ -169,6 +170,7 @@ public class ventanaLogin extends javax.swing.JFrame {
             infoRol = rs.getString(1).split("`");
             rol=infoRol[1];
             if(rol.equals("Administrador_Inventarios")){
+                rol = "AdministradorInventarios";
                 ventanaPrincipalAdministradorInventarios VentanaPrincipal = new ventanaPrincipalAdministradorInventarios();
                 VentanaPrincipal.setVisible(true); 
             } 
@@ -185,14 +187,17 @@ public class ventanaLogin extends javax.swing.JFrame {
                 VentanaPrincipal.setVisible(true); 
             }
             if(rol.equals("Atencion_Al_Cliente")){
+                rol = "AtencionAlCliente";
                 ventanaPrincipalAtencionAlCliente VentanaPrincipal = new ventanaPrincipalAtencionAlCliente();
                 VentanaPrincipal.setVisible(true); 
             }
             if(rol.equals("Administrador_Jefe")){
+                rol = "AdministradorJefe";
                 ventanaPrincipalAdministradorJefe VentanaPrincipal = new ventanaPrincipalAdministradorJefe();
                 VentanaPrincipal.setVisible(true); 
             }
             if(rol.equals("Administrador_Reservas")){
+                rol = "AdministradorReservas";
                 ventanaPrincipalAdministradorReservas VentanaPrincipal = new ventanaPrincipalAdministradorReservas();
                 VentanaPrincipal.setVisible(true); 
             }
@@ -210,6 +215,12 @@ public class ventanaLogin extends javax.swing.JFrame {
 
     public String getUser(){
         return user;
+    }
+    public String getTabla(){
+        return tabla;
+    }
+    public void setTabla(String tabla){
+        ventanaLogin.tabla = tabla;
     }
     public String getRol(){
         return rol;
