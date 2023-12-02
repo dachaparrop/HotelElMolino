@@ -240,32 +240,32 @@ public class ventanaPrincipalAdministradorReservas extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         ventanalogin.setTabla("cliente");
-        ventanaCRUD VentanaPrincipal = new ventanaCRUD();
-        VentanaPrincipal.setVisible(true); 
+        ventanaCRUD VentanaPrincipalCRUD = new ventanaCRUD();
+        VentanaPrincipalCRUD.setVisible(true); 
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
         this.dispose();
         ventanalogin.setTabla("mascota");
-        ventanaCRUD VentanaPrincipal = new ventanaCRUD();
-        VentanaPrincipal.setVisible(true);
+        ventanaCRUD VentanaPrincipalCRUD = new ventanaCRUD();
+        VentanaPrincipalCRUD.setVisible(true);
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here
         this.dispose();
         ventanalogin.setTabla("sugerencia");
-        ventanaCRUD VentanaPrincipal = new ventanaCRUD();
-        VentanaPrincipal.setVisible(true);
+        ventanaCRUD VentanaPrincipalCRUD = new ventanaCRUD();
+        VentanaPrincipalCRUD.setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         this.dispose();
         ventanalogin.setTabla("reserva");
-        ventanaCRUD VentanaPrincipal = new ventanaCRUD();
-        VentanaPrincipal.setVisible(true);
+        ventanaCRUD VentanaPrincipalCRUD = new ventanaCRUD();
+        VentanaPrincipalCRUD.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
