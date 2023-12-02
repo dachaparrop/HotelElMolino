@@ -12,7 +12,7 @@ import java.sql.*;
  */
 public class HotelElMolino {
 
-   private static Connection conexion;
+    private static Connection conexion;
     private static String bd = "hotel";
     private static String user = "root";
     private static String password = "Admin";

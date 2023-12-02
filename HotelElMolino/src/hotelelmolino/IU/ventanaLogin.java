@@ -17,6 +17,7 @@ public class ventanaLogin extends javax.swing.JFrame {
     private static String rol;
     private static String password;
     private static String tabla;
+    private static boolean activa;
     private static String host = "localhost";
     private static String server = "jdbc:mysql://" + host + "/" + bd;
 
@@ -157,6 +158,7 @@ public class ventanaLogin extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             conexion = DriverManager.getConnection(server, user, password);
             System.out.println("ConexiÃ3n a base de datos " + server + " ... OK");
+            activa=true;
             //realizar consulta 
         try {
             this.dispose();
@@ -216,6 +218,9 @@ public class ventanaLogin extends javax.swing.JFrame {
     public String getUser(){
         return user;
     }
+    public Connection getConexion(){
+        return conexion;
+    }
     public String getTabla(){
         return tabla;
     }
@@ -224,6 +229,9 @@ public class ventanaLogin extends javax.swing.JFrame {
     }
     public String getRol(){
         return rol;
+    }
+    public void setActiva(boolean activa){
+    ventanaLogin.activa = activa;
     }
     
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -270,6 +278,14 @@ public class ventanaLogin extends javax.swing.JFrame {
                 new ventanaLogin().setVisible(true);
             }
         });
+        if (activa==false){
+            try {
+            conexion.close();
+            System.out.println("Cerrar conexion con " + server + " ... OK");
+        } catch (SQLException ex) {
+            System.out.println("Imposible cerrar conexion ... FAIL");
+        }            
+        } 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
