@@ -4,6 +4,7 @@
  */
 package hotelelmolino.IU;
     import java.sql.*;
+    import java.util.ArrayList; 
 
 
 /**
@@ -11,7 +12,9 @@ package hotelelmolino.IU;
  * @author angie
  */
 public class ventanaR extends javax.swing.JFrame {
-    static ventanaLogin ventanalogin = new ventanaLogin();
+    static ventanaLogin ventanalogin = new ventanaLogin();   
+    static ArrayList<String> datos = new ArrayList<String>();
+    String rol =ventanalogin.getRol();
 
     /**
      * Creates new form ventanaR
@@ -30,27 +33,20 @@ public class ventanaR extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(36, 149, 253));
 
-        jButton2.setBackground(null);
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/add.png"))); // NOI18N
-        jButton2.setText("AÑADIR");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
-        jLabel5.setText("Acciones permitidas en");
+        jLabel5.setText("Registros de");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel3.setText("HOTEL EL MOLINO");
@@ -58,7 +54,6 @@ public class ventanaR extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel6.setText(ventanalogin.getTabla());
 
-        jButton6.setBackground(null);
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/regresra.png"))); // NOI18N
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);
@@ -71,58 +66,67 @@ public class ventanaR extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("aa");
+        jTextArea1.setText("");
         jTextArea1.setToolTipText("");
         jScrollPane1.setViewportView(jTextArea1);
+
+        jButton1.setText("Cargar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(227, 227, 227)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jButton6)))
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jButton6)
+                .addContainerGap(822, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(195, 195, 195)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addComponent(jLabel6)))))
-                .addGap(172, 172, 172))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(204, 204, 204)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(227, 227, 227)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(73, 73, 73))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jButton6)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6))
-                    .addComponent(jButton2))
-                .addGap(59, 59, 59))
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(129, 129, 129))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jButton1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,8 +145,6 @@ public class ventanaR extends javax.swing.JFrame {
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
-        System.out.print(ventanalogin.getRol());
-        String rol =ventanalogin.getRol();
         this.dispose();
         if (rol.equals("AtencionAlCliente")){
             ventanaPrincipalAtencionAlCliente VentanaPrincipalJefe = new ventanaPrincipalAtencionAlCliente();
@@ -154,6 +156,85 @@ public class ventanaR extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        System.out.println(rol+" "+ventanalogin.getTabla());
+        if(rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("parqueadero")){
+            try {
+            Statement s = ventanalogin.getConexion().createStatement();
+            ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla()); 
+            String ocupado;
+            while (rs.next()) {
+                if(rs.getInt(2)==1){ocupado="Ocupado";}else{ocupado="Vacio";}
+                datos.add(
+                        "Número parqueadero: " + rs.getInt(1)
+                        + "\t" + ocupado
+                        + "\tCabaña asociada: " + rs.getInt(3)+"\n");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }        
+        }
+        if(rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("cabaña")){
+            try {
+            Statement s = ventanalogin.getConexion().createStatement();
+            ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla());            
+            while (rs.next()) {
+                datos.add(
+                        "Número de cabaña: " + rs.getInt(1)
+                        + "\tCapacidad: " + rs.getInt(2)
+                        + "\tCamas Dobles: " + rs.getInt(3)
+                        + "\tCamas Sencillas: " + rs.getInt(4)
+                        + "\tHabitaciones: " + rs.getInt(5)+"\n");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }        
+        }
+        if((rol.equals("AtencionAlCliente") || rol.equals("AdministradorReservas") )&& ventanalogin.getTabla().equals("servicio")){
+            try {
+            Statement s = ventanalogin.getConexion().createStatement();
+            ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla());            
+            while (rs.next()) {
+                datos.add(
+                        "Servicios del Hotel: " + rs.getString(1)+"\n");
+            }
+            Statement s2 = ventanalogin.getConexion().createStatement();
+            ResultSet rs2 = s2.executeQuery("select * from cabaña_has_servicio"); 
+            while (rs2.next()) {
+                datos.add(
+                        "Servicio: " + rs2.getString(1)
+                        + "\tCabaña que lo tiene: " + rs2.getInt(2)+"\n");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }        
+        }
+        if(rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("historial paseos")){
+            try {
+            Statement s = ventanalogin.getConexion().createStatement();
+            ResultSet rs = s.executeQuery("select * from registro_paseos");            
+            while (rs.next()) {
+                datos.add(
+                        "Id: " + rs.getInt(1)
+                        + "\tMascota Id: " + rs.getInt(2)
+                        + "\tNombre Mascota: " + rs.getString(3)
+                        + "\tHora inicio servicio: " + rs.getTime(4)
+                        + "\tHora finalizacion servicio: " + rs.getTime(5)
+                        + "\tFecha paseo: " + rs.getDate(6)
+                        + "\tCuidador: " + rs.getString(7)+"\n");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }        
+        }      
+        jTextArea1.setText(""+datos);
+        datos.clear();        
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -185,31 +266,14 @@ public class ventanaR extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ventanaR().setVisible(true);
-                try {
-// Preparamos la consulta 
-            Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from obra");
-// Recorremos el resultado, mientras haya registros para leer, y escribimos el resultado en pantalla.
-            while (rs.next()) {
-                System.out.println(
-                        "ob_id: " + rs.getInt(1)
-                        + "\tob_nombre: " + rs.getString(2)
-                        + "\t\tob_tipo: " + rs.getString(3)
-                        + "\t\tob_costo: " + rs.getFloat(4)
-                        + "\t\tob_ex_id: " + rs.getInt(5)
-                );
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }
+                new ventanaR().setVisible(true);                
             }
         });
         
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

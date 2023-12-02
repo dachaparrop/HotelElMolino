@@ -163,11 +163,12 @@ public class ventanaCRUD extends javax.swing.JFrame {
             ventanaPrincipalAdministradorJefe VentanaPrincipalJefe = new ventanaPrincipalAdministradorJefe();
             VentanaPrincipalJefe.setVisible(true);
         }
-        if (rol.equals("AdministradorInventario")){
+        if (rol.equals("AdministradorInventarios")){
             ventanaPrincipalAdministradorInventarios VentanaPrincipalJefe = new ventanaPrincipalAdministradorInventarios();
             VentanaPrincipalJefe.setVisible(true);
         }
         if (rol.equals("AdministradorReservas")){
+            System.out.println("entro");
             ventanaPrincipalAdministradorReservas VentanaPrincipalJefe = new ventanaPrincipalAdministradorReservas();
             VentanaPrincipalJefe.setVisible(true);
         }    
