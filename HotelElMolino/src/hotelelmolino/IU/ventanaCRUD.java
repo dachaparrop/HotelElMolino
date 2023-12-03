@@ -106,7 +106,7 @@ public class ventanaCRUD extends javax.swing.JFrame {
         });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/historial inventario grande.png"))); // NOI18N
-        jButton5.setText("HISTORIAL INVENTARIO");
+        jButton5.setText("HISTORIAL");
         jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -214,8 +214,13 @@ public class ventanaCRUD extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         this.dispose();
+        if (ventanalogin.getRol().equals("AdministradorReservas") && ventanalogin.getTabla().equals("reserva")) {
+            ventanaReservaC ventana = new ventanaReservaC();
+            ventana.setVisible(true);
+        }
+        else{
         ventanaClienteC VentanaPrincipalJefe = new ventanaClienteC();
-        VentanaPrincipalJefe.setVisible(true);
+        VentanaPrincipalJefe.setVisible(true);}
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked

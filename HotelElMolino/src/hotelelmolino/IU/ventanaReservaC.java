@@ -4,6 +4,7 @@
  */
 package hotelelmolino.IU;
 import java.sql.*;
+import java.time.LocalTime;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,13 +13,16 @@ import javax.swing.JOptionPane;
  */
 public class ventanaReservaC extends javax.swing.JFrame {
     ventanaLogin ventanalogin = new ventanaLogin();
-    private boolean mascota = false;
+    private boolean mascota = false;    
 
     /**
      * Creates new form ventanaReservaC
      */
     public ventanaReservaC() {
         initComponents();
+        if(ventanalogin.getRol().equals("AtecionAlCliente")){
+            jLabel9.setVisible(false);
+            IdAdmin.setVisible(false);}
     }
 
     /**
@@ -294,20 +298,52 @@ public class ventanaReservaC extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        if (jCheckBox1.isSelected()){mascota=true;} else{mascota=false;}
-            try {
-                // Preparamos la actualización del registro con id = 114
-                PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("Call pa_facturacion(?,?,?,?,?,?,?,?,?)");
+        mascota = jCheckBox1.isSelected();
+        int idDefault;
+        LocalTime horaActual = LocalTime.now();
+        System.out.println(horaActual);
+        if (horaActual.getHour()>18&&horaActual.getHour()<6){idDefault=666888555;}else{idDefault=777999444;}
+        if(ventanalogin.getRol().equals("AtecionAlCliente")){
+            try { 
+                CallableStatement funcion = ventanalogin.getConexion().prepareCall("Call pa_facturacion(?,?,?,?,?,?,?,?,?)");
                 funcion.setInt(1, Integer.parseInt(idCliente.getText()));
                 funcion.setInt(2, Integer.parseInt(cantDias.getText()));
-                funcion.setDate(3, Date.valueOf(fechaIn.getText()));
+                funcion.setDate(3, Date.valueOf(fechaIn.getText()+horaActual.getHour()+ ":" + horaActual.getMinute()+":00"));
+                funcion.setString(4, metPago.getText());
+                funcion.setInt(5, Integer.parseInt(cantHues.getText()));
+                funcion.setInt(6, idDefault);
+                funcion.setInt(7, Integer.parseInt(idTrab.getText()));
+                funcion.setInt(8, Integer.parseInt(numCab.getText()));
+                funcion.setBoolean(9, mascota);
+                funcion.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Ejecución exitosa");
+                idCliente.setText(null);
+                cantDias.setText(null);
+                fechaIn.setText(null);
+                metPago.setText(null);
+                idTrab.setText(null);
+                IdAdmin.setText(null);
+                cantHues.setText(null);
+                numCab.setText(null);           
+                JOptionPane.showMessageDialog(null, "Ejecución exitosa");       
+        }catch (SQLException ex) {
+                System.out.println("Imposible realizar la ejecucion ... FAIL");
+            }
+        }
+        else{     
+            try {
+                System.out.println(horaActual);
+                CallableStatement funcion = ventanalogin.getConexion().prepareCall("Call pa_facturacion(?,?,?,?,?,?,?,?,?)");
+                funcion.setInt(1, Integer.parseInt(idCliente.getText()));
+                funcion.setInt(2, Integer.parseInt(cantDias.getText()));
+                funcion.setDate(3, Date.valueOf(fechaIn.getText()+horaActual.getHour()+ ":" + horaActual.getMinute()+":00"));
                 funcion.setString(4, metPago.getText());
                 funcion.setInt(5, Integer.parseInt(cantHues.getText()));
                 funcion.setInt(6, Integer.parseInt(IdAdmin.getText()));
                 funcion.setInt(7, Integer.parseInt(idTrab.getText()));
                 funcion.setInt(8, Integer.parseInt(numCab.getText()));
                 funcion.setBoolean(9, mascota);
-                int retorno = funcion.executeUpdate();
+                funcion.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Ejecución exitosa");
                 idCliente.setText(null);
                 cantDias.setText(null);
@@ -320,6 +356,7 @@ public class ventanaReservaC extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 System.out.println("Imposible realizar la ejecucion ... FAIL");
             }
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
