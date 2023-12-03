@@ -152,6 +152,10 @@ public class ventanaR extends javax.swing.JFrame {
             ventanaPrincipalAtencionAlCliente VentanaPrincipalJefe = new ventanaPrincipalAtencionAlCliente();
             VentanaPrincipalJefe.setVisible(true);
         }
+        if (rol.equals("AdministradorInventarios")){
+            ventanaPrincipalAdministradorInventarios VentanaPrincipalJefe = new ventanaPrincipalAdministradorInventarios();
+            VentanaPrincipalJefe.setVisible(true);
+        }
         if (rol.equals("AdministradorReservas")){
             ventanaPrincipalAdministradorReservas VentanaPrincipalJefe = new ventanaPrincipalAdministradorReservas();
             VentanaPrincipalJefe.setVisible(true);
