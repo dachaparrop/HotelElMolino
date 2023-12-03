@@ -54,6 +54,7 @@ public class ventanaR extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel6.setText(ventanalogin.getTabla());
 
+        jButton6.setBackground(null);
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/regresra.png"))); // NOI18N
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);
@@ -70,6 +71,7 @@ public class ventanaR extends javax.swing.JFrame {
         jTextArea1.setToolTipText("");
         jScrollPane1.setViewportView(jTextArea1);
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton1.setText("Cargar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -95,7 +97,9 @@ public class ventanaR extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(204, 204, 204)
+                .addGap(44, 44, 44)
+                .addComponent(jButton1)
+                .addGap(53, 53, 53)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
@@ -103,19 +107,17 @@ public class ventanaR extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(227, 227, 227)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(73, 73, 73))
+                .addGap(73, 246, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jButton6)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
@@ -123,10 +125,10 @@ public class ventanaR extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
                         .addGap(129, 129, 129))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(142, 142, 142))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,18 +164,22 @@ public class ventanaR extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        System.out.println(rol+" "+ventanalogin.getTabla());
         if(rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("parqueadero")){
             try {
             Statement s = ventanalogin.getConexion().createStatement();
             ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla()); 
             String ocupado;
             while (rs.next()) {
-                if(rs.getInt(2)==1){ocupado="Ocupado";}else{ocupado="Vacio";}
-                datos.add(
+                if(rs.getInt(2)==1){ocupado="Ocupado";}else{ocupado="Disponible";}
+                if(rs.getInt(3)==0){
+                    datos.add(
                         "Número parqueadero: " + rs.getInt(1)
+                        + "\t" + ocupado+"\n");
+                }else{
+                    datos.add(
+                        "Número del parqueadero: " + rs.getInt(1)
                         + "\t" + ocupado
-                        + "\tCabaña asociada: " + rs.getInt(3)+"\n");
+                        + "\tCabaña asociada: " + rs.getInt(3)+"\n");}
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
@@ -187,7 +193,7 @@ public class ventanaR extends javax.swing.JFrame {
                 datos.add(
                         "Número de cabaña: " + rs.getInt(1)
                         + "\tCapacidad: " + rs.getInt(2)
-                        + "\tCamas Dobles: " + rs.getInt(3)
+                        + "\t\tCamas Dobles: " + rs.getInt(3)
                         + "\tCamas Sencillas: " + rs.getInt(4)
                         + "\tHabitaciones: " + rs.getInt(5)+"\n");
             }

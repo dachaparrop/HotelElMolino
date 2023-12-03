@@ -142,7 +142,6 @@ public class ventanaRU extends javax.swing.JFrame {
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
-        System.out.print(ventanalogin.getRol());
         String rol =ventanalogin.getRol();
         this.dispose();
         if (rol.equals("Celador")){

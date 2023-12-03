@@ -53,6 +53,11 @@ public class ventanaCRUD extends javax.swing.JFrame {
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/update.png"))); // NOI18N
         jButton2.setText("EDITAR");
@@ -156,7 +161,6 @@ public class ventanaCRUD extends javax.swing.JFrame {
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
-        System.out.print(ventanalogin.getRol());
         String rol =ventanalogin.getRol();
         this.dispose();
         if (rol.equals("AdministradorJefe")){
@@ -168,7 +172,6 @@ public class ventanaCRUD extends javax.swing.JFrame {
             VentanaPrincipalJefe.setVisible(true);
         }
         if (rol.equals("AdministradorReservas")){
-            System.out.println("entro");
             ventanaPrincipalAdministradorReservas VentanaPrincipalJefe = new ventanaPrincipalAdministradorReservas();
             VentanaPrincipalJefe.setVisible(true);
         }    
@@ -177,6 +180,13 @@ public class ventanaCRUD extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        ventanaClienteC VentanaPrincipalJefe = new ventanaClienteC();
+        VentanaPrincipalJefe.setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
