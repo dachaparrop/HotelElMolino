@@ -23,11 +23,6 @@ public class ventanaClienteC extends javax.swing.JFrame {
             sugerenciaI.setVisible(false);
             reserva.setVisible(false);
             jLabel1.setVisible(false);}
-        if(ventanalogin.getTabla().equals("reserva")){
-            jLabel2.setVisible(false);
-            sugerenciaI.setVisible(false);
-            reserva.setVisible(true);
-            jLabel1.setVisible(false);}
         if(ventanalogin.getTabla().equals("sugerencia")){
             jLabel2.setVisible(false);
             sugerenciaI.setVisible(true);
@@ -353,10 +348,10 @@ public class ventanaClienteC extends javax.swing.JFrame {
         if(ventanalogin.getTabla().equals("sugerencia")){
         try {
             // Preparamos la creacion del registro en la tabla obra
-            PreparedStatement insertar = ventanalogin.getConexion().prepareStatement("INSERT INTO sugerencia (sug_fecha,sug_descripcion,sug_res_id) VALUES(?,?,?)");
-            insertar.setDate(1, Date.valueOf(secondText.getText()));
-            insertar.setString(2, thirdText.getText());
-            insertar.setInt(3, Integer.parseInt(firstText.getText()));            
+            PreparedStatement insertar = ventanalogin.getConexion().prepareStatement("call pa_nuevaSugerencia(?,?,?)");
+            insertar.setInt(1, Integer.parseInt(firstText.getText()));
+            insertar.setDate(2, Date.valueOf(secondText.getText()));
+            insertar.setString(3, thirdText.getText()); 
             int retorno = insertar.executeUpdate();
             JOptionPane.showMessageDialog(null, "Ejecución exitosa"); 
             firstText.setText(null);
@@ -365,31 +360,6 @@ public class ventanaClienteC extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("Imposible realizar insercion ... FAIL");
         }
-        }
-        if(ventanalogin.getTabla().equals("reserva")){
-            boolean vehiculo=false;
-            if(fifthText.getText()!=null){vehiculo=true;}
-        try {
-            // Preparamos la actualización del registro con id = 114
-            PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("Call pa_nuevoCliente(?,?,?,?,?,?,?)");
-            funcion.setInt(1, Integer.parseInt(firstText.getText()));  
-            funcion.setString(2, secondText.getText());  
-            funcion.setString(3, thirdText.getText());  
-            funcion.setBoolean(4, vehiculo); 
-            funcion.setString(5, fourthText.getText());  
-            funcion.setString(6, fifthText.getText());  
-            funcion.setInt(7, Integer.parseInt(sixthText.getText()));  
-            int retorno = funcion.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Ejecución exitosa"); 
-            firstText.setText(null);
-            secondText.setText(null);
-            thirdText.setText(null);
-            fourthText.setText(null);
-            fifthText.setText(null);
-            sixthText.setText(null);
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar la ejecucion ... FAIL");
-        } 
         }
     }//GEN-LAST:event_jButton1MouseClicked
 

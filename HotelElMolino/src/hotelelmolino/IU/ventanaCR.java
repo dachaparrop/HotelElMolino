@@ -152,8 +152,12 @@ public class ventanaCR extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         this.dispose();
+        if (ventanalogin.getTabla().equals("reserva")){
+        ventanaReservaC ventana = new ventanaReservaC();
+        ventana.setVisible(true);}
+        else{
         ventanaClienteC VentanaPrincipalJefe = new ventanaClienteC();
-        VentanaPrincipalJefe.setVisible(true);
+        VentanaPrincipalJefe.setVisible(true);}
     }//GEN-LAST:event_jButton2MouseClicked
 
     /**
