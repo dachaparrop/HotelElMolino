@@ -8,17 +8,12 @@ Pasos para ejecutar la aplicación:
 4. Agregar mysql connector.jar
 5. Ejecutar la clase ventanaLogin y probar alguno de estos usuarios:
 
-trabajador_administrador_jefe:
-
-isabel_torres
-
-trabajador_administrador_inventario:
-
-carlos_diaz
-
 trabajador_administrador_reservas:
 
 diego_vargas
-laura_lopez
+
+atencion_cliente:
+
+elena_luna
 
 todos tienen contraseña: 12345
