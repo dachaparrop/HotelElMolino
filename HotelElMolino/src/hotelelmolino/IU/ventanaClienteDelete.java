@@ -5,6 +5,7 @@
 package hotelelmolino.IU;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,6 +41,11 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +73,7 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel6.setText(ventanalogin.getTabla());
 
+        jButton6.setBackground(null);
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/regresra.png"))); // NOI18N
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);
@@ -83,6 +90,35 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
         jTextArea1.setToolTipText("");
         jScrollPane1.setViewportView(jTextArea1);
 
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton2.setText("Eliminar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("ID Sujeto");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Nombre Sujeto");
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -91,7 +127,11 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jButton6)
                 .addContainerGap(822, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(227, 227, 227)
+                .addComponent(jLabel3)
+                .addGap(73, 246, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -103,10 +143,20 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(227, 227, 227)
-                .addComponent(jLabel3)
-                .addGap(73, 246, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(90, 90, 90))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,13 +168,26 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
-                        .addGap(129, 129, 129))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(21, 21, 21)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(142, 142, 142))))
@@ -146,75 +209,21 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        if(rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("parqueadero")){
+        if(rol.equals("AdministradorReservas") && (ventanalogin.getTabla().equals("mascota") || ventanalogin.getTabla().equals("cliente"))){
             try {
                 Statement s = ventanalogin.getConexion().createStatement();
-                ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla());
-                String ocupado;
-                while (rs.next()) {
-                    if(rs.getInt(2)==1){ocupado="Ocupado";}else{ocupado="Disponible";}
-                    if(rs.getInt(3)==0){
-                        datos.add(
-                            "Número parqueadero: " + rs.getInt(1)
-                            + "\t" + ocupado+"\n");
-                    }else{
-                        datos.add(
-                            "Número del parqueadero: " + rs.getInt(1)
-                            + "\t" + ocupado
-                            + "\tCabaña asociada: " + rs.getInt(3)+"\n");}
-                }
-            } catch (SQLException ex) {
-                System.out.println("Imposible realizar consulta ... FAIL");
-            }
-        }
-        if(rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("cabaña")){
-            try {
-                Statement s = ventanalogin.getConexion().createStatement();
-                ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla());
+                ResultSet rs = s.executeQuery("select * from vista_admin_reserva_huespedes");
                 while (rs.next()) {
                     datos.add(
-                        "Número de cabaña: " + rs.getInt(1)
-                        + "\tCapacidad: " + rs.getInt(2)
-                        + "\t\tCamas Dobles: " + rs.getInt(3)
-                        + "\tCamas Sencillas: " + rs.getInt(4)
-                        + "\tHabitaciones: " + rs.getInt(5)+"\n");
-                }
-            } catch (SQLException ex) {
-                System.out.println("Imposible realizar consulta ... FAIL");
-            }
-        }
-        if((rol.equals("AtencionAlCliente") || rol.equals("AdministradorReservas") )&& ventanalogin.getTabla().equals("servicio")){
-            try {
-                Statement s = ventanalogin.getConexion().createStatement();
-                ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla());
-                while (rs.next()) {
-                    datos.add(
-                        "Servicios del Hotel: " + rs.getString(1)+"\n");
-                }
-                Statement s2 = ventanalogin.getConexion().createStatement();
-                ResultSet rs2 = s2.executeQuery("select * from cabaña_has_servicio");
-                while (rs2.next()) {
-                    datos.add(
-                        "Servicio: " + rs2.getString(1)
-                        + "\tCabaña que lo tiene: " + rs2.getInt(2)+"\n");
-                }
-            } catch (SQLException ex) {
-                System.out.println("Imposible realizar consulta ... FAIL");
-            }
-        }
-        if(rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("historial paseos")){
-            try {
-                Statement s = ventanalogin.getConexion().createStatement();
-                ResultSet rs = s.executeQuery("select * from registro_paseos");
-                while (rs.next()) {
-                    datos.add(
-                        "Id: " + rs.getInt(1)
-                        + "\tMascota Id: " + rs.getInt(2)
-                        + "\tNombre Mascota: " + rs.getString(3)
-                        + "\tHora inicio servicio: " + rs.getTime(4)
-                        + "\tHora finalizacion servicio: " + rs.getTime(5)
-                        + "\tFecha paseo: " + rs.getDate(6)
-                        + "\tCuidador: " + rs.getString(7)+"\n");
+                        "Id Cliente: " + rs.getInt(1)
+                        + "\tNombre: " + rs.getString(2)
+                        + "\tApellido: " + rs.getString(3)
+                        + "\tVehículo: " + rs.getString(4)
+                        + "\tNacionalidad: " + rs.getString(5)
+                        + "\tTelefono: " + rs.getInt(6)
+                        + "\tNombre Mascota: " + rs.getString(7)
+                        + "\tRaza: " + rs.getString(7)
+                        + "\tGénero: " + rs.getString(8)+"\n");
                 }
             } catch (SQLException ex) {
                 System.out.println("Imposible realizar consulta ... FAIL");
@@ -232,6 +241,32 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
         // TODO add your handling code here:
         ventanalogin.verificarRol(this);
     }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        try {
+            // Preparamos la eliminacion del registro con id = 406
+            PreparedStatement eliminar = ventanalogin.getConexion().prepareStatement("DELETE FROM "+ventanalogin.getTabla()+" WHERE cli_id=? AND cli_nombre=?");
+            eliminar.setInt(1, Integer.parseInt(jTextField1.getText())); 
+            eliminar.setString(2, jTextField2.getText()); 
+            int retorno = eliminar.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Ejecución exitosa");
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar eliminacion ... FAIL");
+        }         
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,12 +305,17 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

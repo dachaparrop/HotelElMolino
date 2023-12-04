@@ -57,12 +57,19 @@ public class ventanaCRUD extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(36, 149, 253));
 
+        jButton3.setBackground(null);
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/search.png"))); // NOI18N
         jButton3.setText("BUSCAR");
         jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
+        jButton1.setBackground(null);
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/add.png"))); // NOI18N
         jButton1.setText("AÑADIR");
         jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -75,6 +82,7 @@ public class ventanaCRUD extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(null);
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/update.png"))); // NOI18N
         jButton2.setText("EDITAR");
         jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -87,15 +95,22 @@ public class ventanaCRUD extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel3.setText("HOTEL EL MOLINO");
 
+        jButton4.setBackground(null);
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/delete.png"))); // NOI18N
         jButton4.setText("ELIMINAR");
         jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel6.setText(ventanalogin.getTabla());
 
+        jButton6.setBackground(null);
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/regresra.png"))); // NOI18N
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);
@@ -110,6 +125,7 @@ public class ventanaCRUD extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setBackground(null);
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/historial inventario grande.png"))); // NOI18N
         jButton5.setText("HISTORIAL");
         jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -225,6 +241,20 @@ public class ventanaCRUD extends javax.swing.JFrame {
         ventanaR ventanalectura = new ventanaR();
         ventanalectura.setVisible(true);}
     }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        ventanaClienteDelete ventana = new ventanaClienteDelete();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        ventanaR ventana = new ventanaR();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments

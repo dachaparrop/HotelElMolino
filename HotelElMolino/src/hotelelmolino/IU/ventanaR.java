@@ -207,7 +207,7 @@ public class ventanaR extends javax.swing.JFrame {
         if(rol.equals("AdministradorReservas")&& ventanalogin.getTabla().equals("servicios")){
             try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from cabaña_has_servicio"); 
+            ResultSet rs2 = s2.executeQuery("select * from vista_admin_reserva_cabaña_servicio"); 
             while (rs2.next()) {
                 datos.add(
                         "Número de cabaña: " + rs2.getInt(1)
@@ -221,19 +221,58 @@ public class ventanaR extends javax.swing.JFrame {
             System.out.println("Imposible realizar consulta ... FAIL");
         }        
         }
-        if(rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("historial paseos")){
+        if(rol.equals("AdministradorReservas")&& ventanalogin.getTabla().equals("servicios")){
+            try {            
+            Statement s2 = ventanalogin.getConexion().createStatement();
+            ResultSet rs2 = s2.executeQuery("select * from vista_admin_reserva_cabaña_servicio"); 
+            while (rs2.next()) {
+                datos.add(
+                        "Número de cabaña: " + rs2.getInt(1)
+                        + "\tCapacidad: " + rs2.getInt(2)
+                        + "\t\tCamas Dobles: " + rs2.getInt(3)
+                        + "\tCamas Sencillas: " + rs2.getInt(4)
+                        + "\tHabitaciones: " + rs2.getInt(5)
+                                + "\tServicio que tiene: " + rs2.getString(6)+"\n");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }        
+        }
+        if(rol.equals("AdministradorReservas")&& ventanalogin.getTabla().equals("sugerencia")){
+            try {            
+            Statement s2 = ventanalogin.getConexion().createStatement();
+            ResultSet rs2 = s2.executeQuery("select * from sugerencia"); 
+            while (rs2.next()) {
+                datos.add(
+                        "Id: " + rs2.getInt(1)
+                        + "\tFecha: " + rs2.getDate(2)
+                        + "\tDescripción: " + rs2.getString(3)
+                        + "\tId reserva asociada: " + rs2.getInt(4)+"\n");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }
+        }
+        if(rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("reserva")){
             try {
             Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from registro_paseos");            
+            ResultSet rs = s.executeQuery("select * from vista_admin_reserva_cabaña");            
             while (rs.next()) {
                 datos.add(
-                        "Id: " + rs.getInt(1)
-                        + "\tMascota Id: " + rs.getInt(2)
-                        + "\tNombre Mascota: " + rs.getString(3)
-                        + "\tHora inicio servicio: " + rs.getTime(4)
-                        + "\tHora finalizacion servicio: " + rs.getTime(5)
-                        + "\tFecha paseo: " + rs.getDate(6)
-                        + "\tCuidador: " + rs.getString(7)+"\n");
+                        "Id Reserva: " + rs.getInt(1)
+                        + "\tCliente Id: " + rs.getInt(2)
+                        + "\tDuracion estadía: " + rs.getInt(3)
+                        + "\tCheck In: " + rs.getDate(4)
+                        + "\tCheck Out: " + rs.getDate(5)
+                        + "\tCosto: " + rs.getInt(6)
+                        + "\tMétodo de pago: " + rs.getString(7)+
+                                "Cantidad Huespedes: " + rs.getInt(8)
+                        + "\tAdmin Id: " + rs.getInt(9)
+                        + "\tTrabajador Id: " + rs.getInt(10)
+                        + "\tCapacidad Cabaña: " + rs.getInt(11)
+                        + "\tCAmas Dobles: " + rs.getInt(12)
+                        + "\tCamas sencillas: " + rs.getInt(13)
+                        + "\tHabitaciones: " + rs.getInt(14)+"\n");
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
