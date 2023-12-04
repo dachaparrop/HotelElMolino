@@ -86,6 +86,7 @@ public class ventanaReservaC extends javax.swing.JFrame {
 
         jLabel8.setText("ID TRABAJADOR");
 
+        jButton6.setBackground(null);
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/regresra.png"))); // NOI18N
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);
@@ -321,7 +322,6 @@ public class ventanaReservaC extends javax.swing.JFrame {
         LocalTime horaActual = LocalTime.now();
         if (horaActual.getHour()>18&&horaActual.getHour()<6){idDefault=666888555;}else{idDefault=777999444;}
         if(ventanalogin.getRol().equals("AtencionAlCliente")){
-            System.out.println(idDefault);
             try { 
                 CallableStatement funcion = ventanalogin.getConexion().prepareCall("call pa_facturacion(?,?,?,?,?,?,?,?,?);");
                 funcion.setInt(1, Integer.parseInt(idCliente.getText()));
@@ -383,7 +383,6 @@ public class ventanaReservaC extends javax.swing.JFrame {
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
-        System.out.print(ventanalogin.getRol());
         String rol =ventanalogin.getRol();
         this.dispose();
         if (rol.equals("AtencionAlCliente")){

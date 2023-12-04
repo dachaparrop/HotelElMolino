@@ -86,6 +86,7 @@ public class ventanaClienteC extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(36, 149, 253));
 
+        jButton6.setBackground(null);
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/regresra.png"))); // NOI18N
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);

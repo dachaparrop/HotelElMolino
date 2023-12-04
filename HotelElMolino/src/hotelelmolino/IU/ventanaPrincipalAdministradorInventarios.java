@@ -57,6 +57,7 @@ public class ventanaPrincipalAdministradorInventarios extends javax.swing.JFrame
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel5.setText("Bienvenid@ administrador de Inventario,");
 
+        jButton7.setBackground(null);
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/pngwing.com (1).png"))); // NOI18N
         jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
