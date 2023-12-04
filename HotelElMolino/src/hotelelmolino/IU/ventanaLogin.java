@@ -41,6 +41,18 @@ public class ventanaLogin extends javax.swing.JFrame {
             ventanaPrincipalAdministradorReservas VentanaPrincipalJefe = new ventanaPrincipalAdministradorReservas();
             VentanaPrincipalJefe.setVisible(true);
         }
+        if (rol.equals("AtencionAlCliente")){
+            ventanaPrincipalAtencionAlCliente VentanaPrincipalJefe = new ventanaPrincipalAtencionAlCliente();
+            VentanaPrincipalJefe.setVisible(true);
+        }
+        if (rol.equals("Cuidador")){
+            ventanaPrincipalCuidador VentanaPrincipalJefe = new ventanaPrincipalCuidador();
+            VentanaPrincipalJefe.setVisible(true);
+        }
+        if (rol.equals("Celador")){
+            ventanaPrincipalCelador VentanaPrincipalJefe = new ventanaPrincipalCelador();
+            VentanaPrincipalJefe.setVisible(true);
+        }
     }
     
     /**
