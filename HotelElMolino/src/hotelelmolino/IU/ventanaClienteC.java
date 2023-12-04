@@ -268,18 +268,7 @@ public class ventanaClienteC extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        // TODO add your handling code here:
-        System.out.print(ventanalogin.getRol());
-        String rol =ventanalogin.getRol();
-        this.dispose();
-        if (rol.equals("AtencionAlCliente")){
-            ventanaPrincipalAtencionAlCliente VentanaPrincipalJefe = new ventanaPrincipalAtencionAlCliente();
-            VentanaPrincipalJefe.setVisible(true);
-        }
-        if (rol.equals("AdministradorReservas")){
-            ventanaPrincipalAdministradorReservas VentanaPrincipalJefe = new ventanaPrincipalAdministradorReservas();
-            VentanaPrincipalJefe.setVisible(true);
-        }
+        ventanalogin.verificarRol(this);
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void fifthTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fifthTextActionPerformed

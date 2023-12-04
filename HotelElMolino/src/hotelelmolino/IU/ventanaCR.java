@@ -136,17 +136,7 @@ public class ventanaCR extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        // TODO add your handling code here:
-        String rol =ventanalogin.getRol();
-        this.dispose();
-        if (rol.equals("AtencionAlCliente")){
-            ventanaPrincipalAtencionAlCliente VentanaPrincipalJefe = new ventanaPrincipalAtencionAlCliente();
-            VentanaPrincipalJefe.setVisible(true);
-        }
-        if (rol.equals("Cuidador")){
-            ventanaPrincipalCuidador VentanaPrincipalJefe = new ventanaPrincipalCuidador();
-            VentanaPrincipalJefe.setVisible(true);
-        }
+        ventanalogin.verificarRol(this);
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked

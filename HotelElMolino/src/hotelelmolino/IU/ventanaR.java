@@ -146,21 +146,7 @@ public class ventanaR extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-        if (rol.equals("AtencionAlCliente")){
-            ventanaPrincipalAtencionAlCliente VentanaPrincipalJefe = new ventanaPrincipalAtencionAlCliente();
-            VentanaPrincipalJefe.setVisible(true);
-        }
-        if (rol.equals("AdministradorInventarios")){
-            ventanaPrincipalAdministradorInventarios VentanaPrincipalJefe = new ventanaPrincipalAdministradorInventarios();
-            VentanaPrincipalJefe.setVisible(true);
-        }
-        if (rol.equals("AdministradorReservas")){
-            ventanaPrincipalAdministradorReservas VentanaPrincipalJefe = new ventanaPrincipalAdministradorReservas();
-            VentanaPrincipalJefe.setVisible(true);
-        }
-
+        ventanalogin.verificarRol(this);
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

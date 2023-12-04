@@ -141,17 +141,7 @@ public class ventanaRU extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        // TODO add your handling code here:
-        String rol =ventanalogin.getRol();
-        this.dispose();
-        if (rol.equals("Celador")){
-            ventanaPrincipalCelador VentanaPrincipalJefe = new ventanaPrincipalCelador();
-            VentanaPrincipalJefe.setVisible(true);
-        }
-        if (rol.equals("AdministradorReservas")){
-            ventanaPrincipalAdministradorReservas VentanaPrincipalJefe = new ventanaPrincipalAdministradorReservas();
-            VentanaPrincipalJefe.setVisible(true);
-        }
+        ventanalogin.verificarRol(this);
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
