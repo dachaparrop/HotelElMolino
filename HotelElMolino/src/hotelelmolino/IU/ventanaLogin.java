@@ -27,6 +27,22 @@ public class ventanaLogin extends javax.swing.JFrame {
         initComponents();
     }
     
+    public void verificarRol(javax.swing.JFrame ventana){
+        ventana.dispose();
+        if (rol.equals("AdministradorJefe")){
+            ventanaPrincipalAdministradorJefe VentanaPrincipalJefe = new ventanaPrincipalAdministradorJefe();
+            VentanaPrincipalJefe.setVisible(true);
+        }
+        if (rol.equals("AdministradorInventarios")){
+            ventanaPrincipalAdministradorInventarios VentanaPrincipalJefe = new ventanaPrincipalAdministradorInventarios();
+            VentanaPrincipalJefe.setVisible(true);
+        }
+        if (rol.equals("AdministradorReservas")){
+            ventanaPrincipalAdministradorReservas VentanaPrincipalJefe = new ventanaPrincipalAdministradorReservas();
+            VentanaPrincipalJefe.setVisible(true);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
