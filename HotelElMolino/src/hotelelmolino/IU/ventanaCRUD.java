@@ -11,6 +11,7 @@ package hotelelmolino.IU;
 public class ventanaCRUD extends javax.swing.JFrame {
     
     ventanaLogin ventanalogin = new ventanaLogin(); 
+    private boolean mascotas=false;
     /**
      * Creates new form ventanaClienteCRUD
      */
@@ -23,6 +24,10 @@ public class ventanaCRUD extends javax.swing.JFrame {
         boolean band = false;
         if(ventanalogin.getRol().equals(rol)){
             band = true;
+        }else
+        if(ventanalogin.getRol().equals("AdministradorReservas")&&ventanalogin.getTabla().equals("mascota")){
+            band = true;
+            mascotas=true;
         }
         return band;
     }
@@ -211,9 +216,14 @@ public class ventanaCRUD extends javax.swing.JFrame {
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         this.dispose();
+        if(mascotas){
+        ventanalogin.setTabla("historial paseos");
+        ventanaR ventana= new ventanaR();
+        ventana.setVisible(true);
+        }else{
         ventanalogin.setTabla("historial inventario");
         ventanaR ventanalectura = new ventanaR();
-        ventanalectura.setVisible(true);
+        ventanalectura.setVisible(true);}
     }//GEN-LAST:event_jButton5MouseClicked
 
     /**

@@ -3,23 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hotelelmolino.IU;
-    import java.sql.*;
-    import java.util.ArrayList; 
-
+import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
  * @author angie
  */
-public class ventanaR extends javax.swing.JFrame {
-    static ventanaLogin ventanalogin = new ventanaLogin();   
+public class ventanaClienteDelete extends javax.swing.JFrame {
+    ventanaLogin ventanalogin = new ventanaLogin();
     static ArrayList<String> datos = new ArrayList<String>();
     String rol =ventanalogin.getRol();
 
+
     /**
-     * Creates new form ventanaR
+     * Creates new form ventanaClienteDelete
      */
-    public ventanaR() {
+    public ventanaClienteDelete() {
         initComponents();
     }
 
@@ -33,17 +33,30 @@ public class ventanaR extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(36, 149, 253));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton1.setText("Cargar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel5.setText("Registros de");
@@ -54,7 +67,6 @@ public class ventanaR extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel6.setText(ventanalogin.getTabla());
 
-        jButton6.setBackground(null);
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/regresra.png"))); // NOI18N
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);
@@ -70,19 +82,6 @@ public class ventanaR extends javax.swing.JFrame {
         jTextArea1.setText("");
         jTextArea1.setToolTipText("");
         jScrollPane1.setViewportView(jTextArea1);
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setText("Cargar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -135,98 +134,80 @@ public class ventanaR extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        ventanalogin.verificarRol(this);
-    }//GEN-LAST:event_jButton6MouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         if(rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("parqueadero")){
             try {
-            Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla()); 
-            String ocupado;
-            while (rs.next()) {
-                if(rs.getInt(2)==1){ocupado="Ocupado";}else{ocupado="Disponible";}
-                if(rs.getInt(3)==0){
-                    datos.add(
-                        "Número parqueadero: " + rs.getInt(1)
-                        + "\t" + ocupado+"\n");
-                }else{
-                    datos.add(
-                        "Número del parqueadero: " + rs.getInt(1)
-                        + "\t" + ocupado
-                        + "\tCabaña asociada: " + rs.getInt(3)+"\n");}
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla());
+                String ocupado;
+                while (rs.next()) {
+                    if(rs.getInt(2)==1){ocupado="Ocupado";}else{ocupado="Disponible";}
+                    if(rs.getInt(3)==0){
+                        datos.add(
+                            "Número parqueadero: " + rs.getInt(1)
+                            + "\t" + ocupado+"\n");
+                    }else{
+                        datos.add(
+                            "Número del parqueadero: " + rs.getInt(1)
+                            + "\t" + ocupado
+                            + "\tCabaña asociada: " + rs.getInt(3)+"\n");}
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
             }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
         }
         if(rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("cabaña")){
             try {
-            Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla());            
-            while (rs.next()) {
-                datos.add(
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla());
+                while (rs.next()) {
+                    datos.add(
                         "Número de cabaña: " + rs.getInt(1)
                         + "\tCapacidad: " + rs.getInt(2)
                         + "\t\tCamas Dobles: " + rs.getInt(3)
                         + "\tCamas Sencillas: " + rs.getInt(4)
                         + "\tHabitaciones: " + rs.getInt(5)+"\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
             }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
         }
-        if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("servicios")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from cabaña_has_servicio"); 
-            while (rs2.next()) {
-                datos.add(
+        if((rol.equals("AtencionAlCliente") || rol.equals("AdministradorReservas") )&& ventanalogin.getTabla().equals("servicio")){
+            try {
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla());
+                while (rs.next()) {
+                    datos.add(
+                        "Servicios del Hotel: " + rs.getString(1)+"\n");
+                }
+                Statement s2 = ventanalogin.getConexion().createStatement();
+                ResultSet rs2 = s2.executeQuery("select * from cabaña_has_servicio");
+                while (rs2.next()) {
+                    datos.add(
                         "Servicio: " + rs2.getString(1)
                         + "\tCabaña que lo tiene: " + rs2.getInt(2)+"\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
             }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-        }
-        if(rol.equals("AdministradorReservas")&& ventanalogin.getTabla().equals("servicios")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from cabaña_has_servicio"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Número de cabaña: " + rs2.getInt(1)
-                        + "\tCapacidad: " + rs2.getInt(2)
-                        + "\t\tCamas Dobles: " + rs2.getInt(3)
-                        + "\tCamas Sencillas: " + rs2.getInt(4)
-                        + "\tHabitaciones: " + rs2.getInt(5)
-                                + "\tServicio que tiene: " + rs2.getString(6)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
         }
         if(rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("historial paseos")){
             try {
-            Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from registro_paseos");            
-            while (rs.next()) {
-                datos.add(
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from registro_paseos");
+                while (rs.next()) {
+                    datos.add(
                         "Id: " + rs.getInt(1)
                         + "\tMascota Id: " + rs.getInt(2)
                         + "\tNombre Mascota: " + rs.getString(3)
@@ -234,14 +215,23 @@ public class ventanaR extends javax.swing.JFrame {
                         + "\tHora finalizacion servicio: " + rs.getTime(5)
                         + "\tFecha paseo: " + rs.getDate(6)
                         + "\tCuidador: " + rs.getString(7)+"\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
             }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-        }      
+        }
         jTextArea1.setText(""+datos);
-        datos.clear();        
+        datos.clear();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+        ventanalogin.verificarRol(this);
+    }//GEN-LAST:event_jButton6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -260,23 +250,22 @@ public class ventanaR extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ventanaR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaClienteDelete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ventanaR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaClienteDelete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ventanaR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaClienteDelete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ventanaR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventanaClienteDelete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ventanaR().setVisible(true);                
+                new ventanaClienteDelete().setVisible(true);
             }
         });
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
