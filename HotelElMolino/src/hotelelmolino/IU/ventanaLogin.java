@@ -201,7 +201,7 @@ public class ventanaLogin extends javax.swing.JFrame {
                 ventanaPrincipalAdministradorReservas VentanaPrincipal = new ventanaPrincipalAdministradorReservas();
                 VentanaPrincipal.setVisible(true); 
             }
-                    
+            System.out.println(rol);         
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
         }                   

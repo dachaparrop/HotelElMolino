@@ -20,9 +20,9 @@ public class ventanaReservaC extends javax.swing.JFrame {
      */
     public ventanaReservaC() {
         initComponents();
-        if(ventanalogin.getRol().equals("AtecionAlCliente")){
-            jLabel9.setVisible(false);
-            IdAdmin.setVisible(false);}
+        if(ventanalogin.getRol().equals("AtencionAlCliente")){
+            jLabel9.setText("FECHA SALIDA");
+            }
     }
 
     /**
@@ -301,14 +301,14 @@ public class ventanaReservaC extends javax.swing.JFrame {
         mascota = jCheckBox1.isSelected();
         int idDefault;
         LocalTime horaActual = LocalTime.now();
-        System.out.println(horaActual);
         if (horaActual.getHour()>18&&horaActual.getHour()<6){idDefault=666888555;}else{idDefault=777999444;}
-        if(ventanalogin.getRol().equals("AtecionAlCliente")){
+        if(ventanalogin.getRol().equals("AtencionAlCliente")){
+            System.out.println(idDefault);
             try { 
-                CallableStatement funcion = ventanalogin.getConexion().prepareCall("Call pa_facturacion(?,?,?,?,?,?,?,?,?)");
+                CallableStatement funcion = ventanalogin.getConexion().prepareCall("call pa_facturacion(?,?,?,?,?,?,?,?,?);");
                 funcion.setInt(1, Integer.parseInt(idCliente.getText()));
                 funcion.setInt(2, Integer.parseInt(cantDias.getText()));
-                funcion.setDate(3, Date.valueOf(fechaIn.getText()+horaActual.getHour()+ ":" + horaActual.getMinute()+":00"));
+                funcion.setDate(3, Date.valueOf(fechaIn.getText()));
                 funcion.setString(4, metPago.getText());
                 funcion.setInt(5, Integer.parseInt(cantHues.getText()));
                 funcion.setInt(6, idDefault);
@@ -332,18 +332,18 @@ public class ventanaReservaC extends javax.swing.JFrame {
         }
         else{     
             try {
-                System.out.println(horaActual);
-                CallableStatement funcion = ventanalogin.getConexion().prepareCall("Call pa_facturacion(?,?,?,?,?,?,?,?,?)");
+                // Preparamos la actualización del registro con id = 114
+                PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("call pa_facturacion(?,?,?,?,?,?,?,?,?);");
                 funcion.setInt(1, Integer.parseInt(idCliente.getText()));
                 funcion.setInt(2, Integer.parseInt(cantDias.getText()));
-                funcion.setDate(3, Date.valueOf(fechaIn.getText()+horaActual.getHour()+ ":" + horaActual.getMinute()+":00"));
+                funcion.setDate(3, Date.valueOf(fechaIn.getText()));
                 funcion.setString(4, metPago.getText());
                 funcion.setInt(5, Integer.parseInt(cantHues.getText()));
                 funcion.setInt(6, Integer.parseInt(IdAdmin.getText()));
                 funcion.setInt(7, Integer.parseInt(idTrab.getText()));
                 funcion.setInt(8, Integer.parseInt(numCab.getText()));
                 funcion.setBoolean(9, mascota);
-                funcion.executeUpdate();
+                int retorno = funcion.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Ejecución exitosa");
                 idCliente.setText(null);
                 cantDias.setText(null);
