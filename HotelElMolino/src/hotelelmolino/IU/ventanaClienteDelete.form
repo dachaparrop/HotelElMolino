@@ -220,7 +220,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ID Sujeto"/>
+            <Property name="text" type="java.lang.String" value="ID Cliente"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField1">
@@ -230,7 +230,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre Sujeto"/>
+            <Property name="text" type="java.lang.String" value="Nombre Cliente"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField2">

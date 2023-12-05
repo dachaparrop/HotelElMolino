@@ -225,6 +225,10 @@ public class ventanaCRUD extends javax.swing.JFrame {
             ventanaReservaC ventana = new ventanaReservaC();
             ventana.setVisible(true);
         }
+        if (ventanalogin.getRol().equals("AdministradorInventarios")) {
+            ventanaInventarioC ventana = new ventanaInventarioC();
+            ventana.setVisible(true);
+        }
         else{
         ventanaClienteC VentanaPrincipalJefe = new ventanaClienteC();
         VentanaPrincipalJefe.setVisible(true);}

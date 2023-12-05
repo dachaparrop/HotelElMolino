@@ -23,12 +23,15 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
     public ventanaClienteDelete() {
         initComponents();
         if(ventanalogin.getTabla().equals("sugerencia")){
-        jLabel1.setText("Id sugerencia");
-        jLabel2.setText("Id reserva asociada");
+        jLabel1.setText("ID sugerencia");
+        jLabel2.setText("ID reserva asociada");
         }
         if(ventanalogin.getTabla().equals("reserva")){
-        jLabel1.setText("Id Reserva");
-        jLabel2.setText("Id Cliente");
+        jLabel1.setText("ID Reserva");
+        jLabel2.setText("ID Cliente");
+        }
+        if(ventanalogin.getTabla().equals("mascota")){
+        jLabel2.setText("Nombre Mascota");
         }
     }
 
@@ -110,7 +113,7 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("ID Sujeto");
+        jLabel1.setText("ID Cliente");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +121,7 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Nombre Sujeto");
+        jLabel2.setText("Nombre Cliente");
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,6 +338,9 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ejecución exitosa");
         } catch (SQLException ex) {
             System.out.println("Imposible realizar eliminacion ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
         }}
         
     }//GEN-LAST:event_jButton2MouseClicked
