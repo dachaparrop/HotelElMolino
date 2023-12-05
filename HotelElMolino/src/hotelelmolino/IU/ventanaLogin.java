@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hotelelmolino.IU;
+
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -11,6 +12,7 @@ import javax.swing.JOptionPane;
  * @author angie
  */
 public class ventanaLogin extends javax.swing.JFrame {
+
     private static Connection conexion;
     private static String bd = "hotel";
     private static String user;
@@ -26,39 +28,39 @@ public class ventanaLogin extends javax.swing.JFrame {
     public ventanaLogin() {
         initComponents();
     }
-    
-    public void verificarRol(javax.swing.JFrame ventana){
+
+    public void verificarRol(javax.swing.JFrame ventana) {
         ventana.dispose();
-        if (rol.equals("AdministradorJefe")){
+        if (rol.equals("AdministradorJefe")) {
             ventanaPrincipalAdministradorJefe VentanaPrincipalJefe = new ventanaPrincipalAdministradorJefe();
             VentanaPrincipalJefe.setVisible(true);
         }
-        if (rol.equals("AdministradorInventarios")){
+        if (rol.equals("AdministradorInventarios")) {
             ventanaPrincipalAdministradorInventarios VentanaPrincipalJefe = new ventanaPrincipalAdministradorInventarios();
             VentanaPrincipalJefe.setVisible(true);
         }
-        if (rol.equals("AdministradorReservas")){
+        if (rol.equals("AdministradorReservas")) {
             ventanaPrincipalAdministradorReservas VentanaPrincipalJefe = new ventanaPrincipalAdministradorReservas();
             VentanaPrincipalJefe.setVisible(true);
         }
-        if (rol.equals("AtencionAlCliente")){
+        if (rol.equals("AtencionAlCliente")) {
             ventanaPrincipalAtencionAlCliente VentanaPrincipalJefe = new ventanaPrincipalAtencionAlCliente();
             VentanaPrincipalJefe.setVisible(true);
         }
-        if (rol.equals("Cuidador")){
+        if (rol.equals("Cuidador")) {
             ventanaPrincipalCuidador VentanaPrincipalJefe = new ventanaPrincipalCuidador();
             VentanaPrincipalJefe.setVisible(true);
         }
-        if (rol.equals("Celador")){
+        if (rol.equals("Celador")) {
             ventanaPrincipalCelador VentanaPrincipalJefe = new ventanaPrincipalCelador();
             VentanaPrincipalJefe.setVisible(true);
         }
-        if (rol.equals("Aseo")){
+        if (rol.equals("Aseo")) {
             ventanaPrincipalAseo VentanaPrincipalJefe = new ventanaPrincipalAseo();
             VentanaPrincipalJefe.setVisible(true);
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -188,79 +190,83 @@ public class ventanaLogin extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conexion = DriverManager.getConnection(server, user, password);
-            System.out.println("ConexiÃ3n a base de datos " + server + " ... OK");
+            System.out.println("Conexion a base de datos " + server + " ... OK");
             //realizar consulta 
-        try {
-            this.dispose();
+            try {
+                this.dispose();
 // Preparamos la consulta 
-            Statement s = conexion.createStatement();
-            ResultSet rs = s.executeQuery("SHOW GRANTS FOR '"+user+"'@'localhost';");
+                Statement s = conexion.createStatement();
+                ResultSet rs = s.executeQuery("SHOW GRANTS FOR '" + user + "'@'localhost';");
 // Recorremos el resultado, mientras haya registros para leer, y escribimos el resultado en pantalla.
-            rs.next();
-            rs.next();
-            String[] infoRol=new String[100];
-            infoRol = rs.getString(1).split("`");
-            rol=infoRol[1];
-            if(rol.equals("Administrador_Inventarios")){
-                rol = "AdministradorInventarios";
-                ventanaPrincipalAdministradorInventarios VentanaPrincipal = new ventanaPrincipalAdministradorInventarios();
-                VentanaPrincipal.setVisible(true); 
-            } 
-            if(rol.equals("Cuidador")){
-                ventanaPrincipalCuidador VentanaPrincipal = new ventanaPrincipalCuidador();
-                VentanaPrincipal.setVisible(true); 
+                rs.next();
+                rs.next();
+                String[] infoRol = new String[100];
+                infoRol = rs.getString(1).split("`");
+                rol = infoRol[1];
+                if (rol.equals("Administrador_Inventarios")) {
+                    rol = "AdministradorInventarios";
+                    ventanaPrincipalAdministradorInventarios VentanaPrincipal = new ventanaPrincipalAdministradorInventarios();
+                    VentanaPrincipal.setVisible(true);
+                }
+                if (rol.equals("Cuidador")) {
+                    ventanaPrincipalCuidador VentanaPrincipal = new ventanaPrincipalCuidador();
+                    VentanaPrincipal.setVisible(true);
+                }
+                if (rol.equals("Aseo")) {
+                    ventanaPrincipalAseo VentanaPrincipal = new ventanaPrincipalAseo();
+                    VentanaPrincipal.setVisible(true);
+                }
+                if (rol.equals("Celador")) {
+                    ventanaPrincipalCelador VentanaPrincipal = new ventanaPrincipalCelador();
+                    VentanaPrincipal.setVisible(true);
+                }
+                if (rol.equals("Atencion_Al_Cliente")) {
+                    rol = "AtencionAlCliente";
+                    ventanaPrincipalAtencionAlCliente VentanaPrincipal = new ventanaPrincipalAtencionAlCliente();
+                    VentanaPrincipal.setVisible(true);
+                }
+                if (rol.equals("Administrador_Jefe")) {
+                    rol = "AdministradorJefe";
+                    ventanaPrincipalAdministradorJefe VentanaPrincipal = new ventanaPrincipalAdministradorJefe();
+                    VentanaPrincipal.setVisible(true);
+                }
+                if (rol.equals("Administrador_Reservas")) {
+                    rol = "AdministradorReservas";
+                    ventanaPrincipalAdministradorReservas VentanaPrincipal = new ventanaPrincipalAdministradorReservas();
+                    VentanaPrincipal.setVisible(true);
+                }
+                System.out.println(rol);
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
             }
-            if(rol.equals("Aseo")){
-                ventanaPrincipalAseo VentanaPrincipal = new ventanaPrincipalAseo();
-                VentanaPrincipal.setVisible(true); 
-            }
-            if(rol.equals("Celador")){
-                ventanaPrincipalCelador VentanaPrincipal = new ventanaPrincipalCelador();
-                VentanaPrincipal.setVisible(true); 
-            }
-            if(rol.equals("Atencion_Al_Cliente")){
-                rol = "AtencionAlCliente";
-                ventanaPrincipalAtencionAlCliente VentanaPrincipal = new ventanaPrincipalAtencionAlCliente();
-                VentanaPrincipal.setVisible(true); 
-            }
-            if(rol.equals("Administrador_Jefe")){
-                rol = "AdministradorJefe";
-                ventanaPrincipalAdministradorJefe VentanaPrincipal = new ventanaPrincipalAdministradorJefe();
-                VentanaPrincipal.setVisible(true); 
-            }
-            if(rol.equals("Administrador_Reservas")){
-                rol = "AdministradorReservas";
-                ventanaPrincipalAdministradorReservas VentanaPrincipal = new ventanaPrincipalAdministradorReservas();
-                VentanaPrincipal.setVisible(true); 
-            }
-            System.out.println(rol);         
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }                   
         } catch (ClassNotFoundException ex) {
             System.out.println("Error cargando el Driver MySQL JDBC ... FAIL");
             JOptionPane.showMessageDialog(null, "No se pudo hacer la conexión, revisa los datos ingresados.");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Imposible realizar conexion con " + server + " ... FAIL");
-        }        
+            JOptionPane.showMessageDialog(null, "Imposible realizar conexion con " + server + " ... FAIL");
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
-    public String getUser(){
+    public String getUser() {
         return user;
     }
-    public Connection getConexion(){
+
+    public Connection getConexion() {
         return conexion;
     }
-    public String getTabla(){
+
+    public String getTabla() {
         return tabla;
     }
-    public void setTabla(String tabla){
+
+    public void setTabla(String tabla) {
         ventanaLogin.tabla = tabla;
     }
-    public String getRol(){
+
+    public String getRol() {
         return rol;
     }
-    
+
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed

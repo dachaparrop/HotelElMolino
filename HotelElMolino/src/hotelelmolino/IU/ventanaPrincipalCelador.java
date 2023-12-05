@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hotelelmolino.IU;
+
 import java.sql.*;
 
 /**
@@ -10,6 +11,7 @@ import java.sql.*;
  * @author angie
  */
 public class ventanaPrincipalCelador extends javax.swing.JFrame {
+
     ventanaLogin ventanalogin = new ventanaLogin();
 
     /**

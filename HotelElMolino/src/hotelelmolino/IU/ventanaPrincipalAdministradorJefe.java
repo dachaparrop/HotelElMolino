@@ -3,13 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hotelelmolino.IU;
+
 import java.sql.*;
+
 /**
  *
  * @author David
  */
 public class ventanaPrincipalAdministradorJefe extends javax.swing.JFrame {
+
     ventanaLogin ventanalogin = new ventanaLogin();
+
     /**
      * Creates new form ventanaPrincipal
      */

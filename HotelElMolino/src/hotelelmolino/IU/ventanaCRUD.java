@@ -9,9 +9,10 @@ package hotelelmolino.IU;
  * @author angie
  */
 public class ventanaCRUD extends javax.swing.JFrame {
-    
-    ventanaLogin ventanalogin = new ventanaLogin(); 
-    private boolean mascotas=false;
+
+    ventanaLogin ventanalogin = new ventanaLogin();
+    private boolean mascotas = false;
+
     /**
      * Creates new form ventanaClienteCRUD
      */
@@ -19,19 +20,17 @@ public class ventanaCRUD extends javax.swing.JFrame {
         initComponents();
         jButton5.setVisible(botonVisible("AdministradorInventarios"));
     }
-    
-    private boolean botonVisible(String rol){
+
+    private boolean botonVisible(String rol) {
         boolean band = false;
-        if(ventanalogin.getRol().equals(rol)){
+        if (ventanalogin.getRol().equals(rol)) {
             band = true;
-        }else
-        if(ventanalogin.getRol().equals("AdministradorReservas")&&ventanalogin.getTabla().equals("mascota")){
+        } else if (ventanalogin.getRol().equals("AdministradorReservas") && ventanalogin.getTabla().equals("mascota")) {
             band = true;
-            mascotas=true;
+            mascotas = true;
         }
         return band;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -223,26 +222,26 @@ public class ventanaCRUD extends javax.swing.JFrame {
         if (ventanalogin.getRol().equals("AdministradorReservas") && ventanalogin.getTabla().equals("reserva")) {
             ventanaReservaC ventana = new ventanaReservaC();
             ventana.setVisible(true);
-        }else
-        if (ventanalogin.getRol().equals("AdministradorInventarios")) {
+        } else if (ventanalogin.getRol().equals("AdministradorInventarios")) {
             ventanaInventarioC ventana = new ventanaInventarioC();
             ventana.setVisible(true);
+        } else {
+            ventanaClienteC VentanaPrincipalJefe = new ventanaClienteC();
+            VentanaPrincipalJefe.setVisible(true);
         }
-        else{
-        ventanaClienteC VentanaPrincipalJefe = new ventanaClienteC();
-        VentanaPrincipalJefe.setVisible(true);}
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         this.dispose();
-        if(mascotas){
-        ventanalogin.setTabla("historial paseos");
-        ventanaR ventana= new ventanaR();
-        ventana.setVisible(true);
-        }else{
-        ventanalogin.setTabla("historial inventario");
-        ventanaR ventanalectura = new ventanaR();
-        ventanalectura.setVisible(true);}
+        if (mascotas) {
+            ventanalogin.setTabla("historial paseos");
+            ventanaR ventana = new ventanaR();
+            ventana.setVisible(true);
+        } else {
+            ventanalogin.setTabla("historial inventario");
+            ventanaR ventanalectura = new ventanaR();
+            ventanalectura.setVisible(true);
+        }
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
@@ -250,8 +249,7 @@ public class ventanaCRUD extends javax.swing.JFrame {
         if (ventanalogin.getRol().equals("AdministradorInventarios") && ventanalogin.getTabla().equals("inventario")) {
             ventanaInventarioDelete ventana = new ventanaInventarioDelete();
             ventana.setVisible(true);
-        }
-        else{
+        } else {
             ventanaClienteDelete ventana = new ventanaClienteDelete();
             ventana.setVisible(true);
         }

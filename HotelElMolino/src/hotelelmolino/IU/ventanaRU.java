@@ -9,6 +9,7 @@ package hotelelmolino.IU;
  * @author angie
  */
 public class ventanaRU extends javax.swing.JFrame {
+
     ventanaLogin ventanalogin = new ventanaLogin();
 
     /**

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hotelelmolino.IU;
+
 import java.sql.*;
 
 /**
@@ -10,7 +11,9 @@ import java.sql.*;
  * @author angie
  */
 public class ventanaPrincipalAtencionAlCliente extends javax.swing.JFrame {
+
     ventanaLogin ventanalogin = new ventanaLogin();
+
     /**
      * Creates new form ventanaPrincipalAtencionAlCliente
      */
@@ -267,7 +270,7 @@ public class ventanaPrincipalAtencionAlCliente extends javax.swing.JFrame {
             System.out.println("Cerrar conexion con hotel ... OK");
         } catch (SQLException ex) {
             System.out.println("Imposible cerrar conexion ... FAIL");
-        }  
+        }
         ventanaLogin VentanaPrincipalCRUD = new ventanaLogin();
         VentanaPrincipalCRUD.setVisible(true);
     }//GEN-LAST:event_jButton7MouseClicked

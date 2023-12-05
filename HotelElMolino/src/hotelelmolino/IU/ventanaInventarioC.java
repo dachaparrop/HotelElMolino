@@ -3,15 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hotelelmolino.IU;
+
 import java.sql.*;
 import javax.swing.JOptionPane;
 import java.math.BigDecimal;
+
 /**
  *
  * @author David
  */
 public class ventanaInventarioC extends javax.swing.JFrame {
+
     ventanaLogin ventanalogin = new ventanaLogin();
+
     /**
      * Creates new form ventanaInventarioC
      */
@@ -248,7 +252,7 @@ public class ventanaInventarioC extends javax.swing.JFrame {
     }//GEN-LAST:event_fourthTextActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        if(ventanalogin.getTabla().equals("inventario")){
+        if (ventanalogin.getTabla().equals("inventario")) {
             try {
                 PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("Call pa_nuevoProductoInventario(?,?,?,?,?,?)");
                 funcion.setString(1, firstText.getText());
@@ -269,7 +273,7 @@ public class ventanaInventarioC extends javax.swing.JFrame {
                 System.out.println("Imposible realizar la ejecucion ... FAIL");
             }
         }
-        if(ventanalogin.getTabla().equals("mascota")){
+        if (ventanalogin.getTabla().equals("mascota")) {
             try {
                 // Preparamos la actualización del registro con id = 114
                 PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("Call pa_nuevaMascota(?,?,?,?,?)");
@@ -289,9 +293,11 @@ public class ventanaInventarioC extends javax.swing.JFrame {
                 System.out.println("Imposible realizar la ejecucion ... FAIL");
             }
         }
-        if(ventanalogin.getTabla().equals("cliente")){
-            boolean vehiculo=false;
-            if(fifthText.getText()!=null){vehiculo=true;}
+        if (ventanalogin.getTabla().equals("cliente")) {
+            boolean vehiculo = false;
+            if (fifthText.getText() != null) {
+                vehiculo = true;
+            }
             try {
                 // Preparamos la actualización del registro con id = 114
                 PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("Call pa_nuevoCliente(?,?,?,?,?,?,?)");
@@ -314,7 +320,7 @@ public class ventanaInventarioC extends javax.swing.JFrame {
                 System.out.println("Imposible realizar la ejecucion ... FAIL");
             }
         }
-        if(ventanalogin.getTabla().equals("sugerencia")){
+        if (ventanalogin.getTabla().equals("sugerencia")) {
             try {
                 // Preparamos la creacion del registro en la tabla obra
                 PreparedStatement insertar = ventanalogin.getConexion().prepareStatement("call pa_nuevaSugerencia(?,?,?)");
@@ -333,7 +339,7 @@ public class ventanaInventarioC extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

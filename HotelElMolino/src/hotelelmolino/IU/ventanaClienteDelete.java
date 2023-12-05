@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hotelelmolino.IU;
+
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -12,26 +13,26 @@ import javax.swing.JOptionPane;
  * @author angie
  */
 public class ventanaClienteDelete extends javax.swing.JFrame {
+
     ventanaLogin ventanalogin = new ventanaLogin();
     static ArrayList<String> datos = new ArrayList<String>();
-    String rol =ventanalogin.getRol();
-
+    String rol = ventanalogin.getRol();
 
     /**
      * Creates new form ventanaClienteDelete
      */
     public ventanaClienteDelete() {
         initComponents();
-        if(ventanalogin.getTabla().equals("sugerencia")){
-        jLabel1.setText("ID sugerencia");
-        jLabel2.setText("ID reserva asociada");
+        if (ventanalogin.getTabla().equals("sugerencia")) {
+            jLabel1.setText("ID sugerencia");
+            jLabel2.setText("ID reserva asociada");
         }
-        if(ventanalogin.getTabla().equals("reserva")){
-        jLabel1.setText("ID Reserva");
-        jLabel2.setText("ID Cliente");
+        if (ventanalogin.getTabla().equals("reserva")) {
+            jLabel1.setText("ID Reserva");
+            jLabel2.setText("ID Cliente");
         }
-        if(ventanalogin.getTabla().equals("mascota")){
-        jLabel2.setText("Nombre Mascota");
+        if (ventanalogin.getTabla().equals("mascota")) {
+            jLabel2.setText("Nombre Mascota");
         }
     }
 
@@ -219,67 +220,67 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        if(rol.equals("AdministradorReservas") && (ventanalogin.getTabla().equals("mascota") || ventanalogin.getTabla().equals("cliente"))){
+        if (rol.equals("AdministradorReservas") && (ventanalogin.getTabla().equals("mascota") || ventanalogin.getTabla().equals("cliente"))) {
             try {
                 Statement s = ventanalogin.getConexion().createStatement();
                 ResultSet rs = s.executeQuery("select * from vista_admin_reserva_huespedes");
                 while (rs.next()) {
                     datos.add(
-                        "Id Cliente: " + rs.getInt(1)
-                        + "\tNombre: " + rs.getString(2)
-                        + "\tApellido: " + rs.getString(3)
-                        + "\tVehículo: " + rs.getString(4)
-                        + "\tNacionalidad: " + rs.getString(5)
-                        + "\tTelefono: " + rs.getInt(6)
-                        + "\tNombre Mascota: " + rs.getString(7)
-                        + "\tRaza: " + rs.getString(7)
-                        + "\tGénero: " + rs.getString(8)+"\n");
+                            "Id Cliente: " + rs.getInt(1)
+                            + "\tNombre: " + rs.getString(2)
+                            + "\tApellido: " + rs.getString(3)
+                            + "\tVehículo: " + rs.getString(4)
+                            + "\tNacionalidad: " + rs.getString(5)
+                            + "\tTelefono: " + rs.getInt(6)
+                            + "\tNombre Mascota: " + rs.getString(7)
+                            + "\tRaza: " + rs.getString(7)
+                            + "\tGénero: " + rs.getString(8) + "\n");
                 }
             } catch (SQLException ex) {
                 System.out.println("Imposible realizar consulta ... FAIL");
             }
         }
-        if(rol.equals("AdministradorReservas")&& ventanalogin.getTabla().equals("sugerencia")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from sugerencia"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Id: " + rs2.getInt(1)
-                        + "\tFecha: " + rs2.getDate(2)
-                        + "\tDescripción: " + rs2.getString(3)
-                        + "\tId reserva asociada: " + rs2.getInt(4)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }
-        }
-        if(rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("reserva")){
+        if (rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("sugerencia")) {
             try {
-            Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from vista_admin_reserva_cabaña");            
-            while (rs.next()) {
-                datos.add(
-                        "Id Reserva: " + rs.getInt(1)
-                        + "\tCliente Id: " + rs.getInt(2)
-                        + "\tDuracion estadía: " + rs.getInt(3)
-                        + "\tCheck In: " + rs.getDate(4)
-                        + "\tCheck Out: " + rs.getDate(5)
-                        + "\tCosto: " + rs.getInt(6)
-                        + "\tMétodo de pago: " + rs.getString(7)+
-                                "Cantidad Huespedes: " + rs.getInt(8)
-                        + "\tAdmin Id: " + rs.getInt(9)
-                        + "\tTrabajador Id: " + rs.getInt(10)
-                        + "\tCapacidad Cabaña: " + rs.getInt(11)
-                        + "\tCAmas Dobles: " + rs.getInt(12)
-                        + "\tCamas sencillas: " + rs.getInt(13)
-                        + "\tHabitaciones: " + rs.getInt(14)+"\n");
+                Statement s2 = ventanalogin.getConexion().createStatement();
+                ResultSet rs2 = s2.executeQuery("select * from sugerencia");
+                while (rs2.next()) {
+                    datos.add(
+                            "Id: " + rs2.getInt(1)
+                            + "\tFecha: " + rs2.getDate(2)
+                            + "\tDescripción: " + rs2.getString(3)
+                            + "\tId reserva asociada: " + rs2.getInt(4) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
             }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
         }
-        jTextArea1.setText(""+datos);
+        if (rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("reserva")) {
+            try {
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from vista_admin_reserva_cabaña");
+                while (rs.next()) {
+                    datos.add(
+                            "Id Reserva: " + rs.getInt(1)
+                            + "\tCliente Id: " + rs.getInt(2)
+                            + "\tDuracion estadía: " + rs.getInt(3)
+                            + "\tCheck In: " + rs.getDate(4)
+                            + "\tCheck Out: " + rs.getDate(5)
+                            + "\tCosto: " + rs.getInt(6)
+                            + "\tMétodo de pago: " + rs.getString(7)
+                            + "Cantidad Huespedes: " + rs.getInt(8)
+                            + "\tAdmin Id: " + rs.getInt(9)
+                            + "\tTrabajador Id: " + rs.getInt(10)
+                            + "\tCapacidad Cabaña: " + rs.getInt(11)
+                            + "\tCAmas Dobles: " + rs.getInt(12)
+                            + "\tCamas sencillas: " + rs.getInt(13)
+                            + "\tHabitaciones: " + rs.getInt(14) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+            }
+        }
+        jTextArea1.setText("" + datos);
         datos.clear();
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -294,55 +295,58 @@ public class ventanaClienteDelete extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        if(ventanalogin.getTabla().equals("cliente")){
-        try {
-            // Preparamos la eliminacion del registro con id = 406
-            PreparedStatement eliminar = ventanalogin.getConexion().prepareStatement("DELETE FROM "+ventanalogin.getTabla()+" WHERE cli_id=? AND cli_nombre=?");
-            eliminar.setInt(1, Integer.parseInt(jTextField1.getText())); 
-            eliminar.setString(2, jTextField2.getText()); 
-            int retorno = eliminar.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Ejecución exitosa");
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar eliminacion ... FAIL");
-        }}
-        if(ventanalogin.getTabla().equals("mascota")){
-        try {
-            // Preparamos la eliminacion del registro con id = 406
-            PreparedStatement eliminar = ventanalogin.getConexion().prepareStatement("DELETE FROM "+ventanalogin.getTabla()+" WHERE mas_cli_id=? AND mas_nombre=?");
-            eliminar.setInt(1, Integer.parseInt(jTextField1.getText())); 
-            eliminar.setString(2, jTextField2.getText()); 
-            int retorno = eliminar.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Ejecución exitosa");
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar eliminacion ... FAIL");
-        }}
-        if(ventanalogin.getTabla().equals("sugerencia")){
-        try {
-            // Preparamos la eliminacion del registro con id = 406
-            PreparedStatement eliminar = ventanalogin.getConexion().prepareStatement("DELETE FROM "+ventanalogin.getTabla()+" WHERE sug_id=? AND sug_res_id=?");
-            eliminar.setInt(1, Integer.parseInt(jTextField1.getText())); 
-            eliminar.setInt(2, Integer.parseInt(jTextField2.getText())); 
-            int retorno = eliminar.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Ejecución exitosa");
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar eliminacion ... FAIL");
+        if (ventanalogin.getTabla().equals("cliente")) {
+            try {
+                // Preparamos la eliminacion del registro con id = 406
+                PreparedStatement eliminar = ventanalogin.getConexion().prepareStatement("DELETE FROM " + ventanalogin.getTabla() + " WHERE cli_id=? AND cli_nombre=?");
+                eliminar.setInt(1, Integer.parseInt(jTextField1.getText()));
+                eliminar.setString(2, jTextField2.getText());
+                int retorno = eliminar.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Ejecución exitosa");
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar eliminacion ... FAIL");
+            }
         }
+        if (ventanalogin.getTabla().equals("mascota")) {
+            try {
+                // Preparamos la eliminacion del registro con id = 406
+                PreparedStatement eliminar = ventanalogin.getConexion().prepareStatement("DELETE FROM " + ventanalogin.getTabla() + " WHERE mas_cli_id=? AND mas_nombre=?");
+                eliminar.setInt(1, Integer.parseInt(jTextField1.getText()));
+                eliminar.setString(2, jTextField2.getText());
+                int retorno = eliminar.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Ejecución exitosa");
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar eliminacion ... FAIL");
+            }
         }
-        if(ventanalogin.getTabla().equals("reserva")){
-        try {
-            // Preparamos la eliminacion del registro con id = 406
-            PreparedStatement eliminar = ventanalogin.getConexion().prepareStatement("DELETE FROM "+ventanalogin.getTabla()+" WHERE res_id=? AND res_cli_id=?");
-            eliminar.setInt(1, Integer.parseInt(jTextField1.getText())); 
-            eliminar.setInt(2, Integer.parseInt(jTextField2.getText()));             
-            int retorno = eliminar.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Ejecución exitosa");
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar eliminacion ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-        }}
-        
+        if (ventanalogin.getTabla().equals("sugerencia")) {
+            try {
+                // Preparamos la eliminacion del registro con id = 406
+                PreparedStatement eliminar = ventanalogin.getConexion().prepareStatement("DELETE FROM " + ventanalogin.getTabla() + " WHERE sug_id=? AND sug_res_id=?");
+                eliminar.setInt(1, Integer.parseInt(jTextField1.getText()));
+                eliminar.setInt(2, Integer.parseInt(jTextField2.getText()));
+                int retorno = eliminar.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Ejecución exitosa");
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar eliminacion ... FAIL");
+            }
+        }
+        if (ventanalogin.getTabla().equals("reserva")) {
+            try {
+                // Preparamos la eliminacion del registro con id = 406
+                PreparedStatement eliminar = ventanalogin.getConexion().prepareStatement("DELETE FROM " + ventanalogin.getTabla() + " WHERE res_id=? AND res_cli_id=?");
+                eliminar.setInt(1, Integer.parseInt(jTextField1.getText()));
+                eliminar.setInt(2, Integer.parseInt(jTextField2.getText()));
+                int retorno = eliminar.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Ejecución exitosa");
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar eliminacion ... FAIL");
+                System.out.println("Error de SQL: " + ex.getMessage());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("Código de error: " + ex.getErrorCode());
+            }
+        }
+
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

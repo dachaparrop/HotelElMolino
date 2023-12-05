@@ -3,18 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hotelelmolino.IU;
-    import java.sql.*;
-    import java.util.ArrayList; 
 
+import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
  * @author angie
  */
 public class ventanaR extends javax.swing.JFrame {
-    static ventanaLogin ventanalogin = new ventanaLogin();   
+
+    static ventanaLogin ventanalogin = new ventanaLogin();
     static ArrayList<String> datos = new ArrayList<String>();
-    String rol =ventanalogin.getRol();
+    String rol = ventanalogin.getRol();
 
     /**
      * Creates new form ventanaR
@@ -27,48 +28,53 @@ public class ventanaR extends javax.swing.JFrame {
         jLabel1.setVisible(false);
         jTextField2.setVisible(false);
         jLabel2.setVisible(false);
-        if((rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("mascota")) || (ventanalogin.getTabla().equals("historial paseos"))){
+        if ((rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("mascota")) || (ventanalogin.getTabla().equals("historial paseos"))) {
             jButton2.setVisible(true);
-        jTextField1.setVisible(true);
-        jLabel1.setVisible(true);
-        jTextField2.setVisible(true);
-        jLabel2.setVisible(true);
-        jLabel1.setText("ID Dueño");
-        jLabel2.setText("Nombre Mascota");
+            jTextField1.setVisible(true);
+            jLabel1.setVisible(true);
+            jTextField2.setVisible(true);
+            jLabel2.setVisible(true);
+            jLabel1.setText("ID Dueño");
+            jLabel2.setText("Nombre Mascota");
         }
-        if(ventanalogin.getTabla().equals("sugerencia")){
+        if (ventanalogin.getTabla().equals("sugerencia")) {
             jButton2.setVisible(true);
-        jTextField1.setVisible(true);
-        jLabel1.setVisible(true);
-        jTextField2.setVisible(true);
-        jLabel2.setVisible(true);
-        jLabel1.setText("Fecha");
-        jLabel2.setText("Reserva asociada");}
-        
-        if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("cliente")){
+            jTextField1.setVisible(true);
+            jLabel1.setVisible(true);
+            jTextField2.setVisible(true);
+            jLabel2.setVisible(true);
+            jLabel1.setText("Fecha");
+            jLabel2.setText("Reserva asociada");
+        }
+
+        if (rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("cliente")) {
             jButton2.setVisible(true);
-        jTextField1.setVisible(true);
-        jLabel1.setVisible(true);
-        jTextField2.setVisible(true);
-        jLabel2.setVisible(true);}
-        if(rol.equals("Aseo")&& ventanalogin.getTabla().equals("cabaña")){
+            jTextField1.setVisible(true);
+            jLabel1.setVisible(true);
+            jTextField2.setVisible(true);
+            jLabel2.setVisible(true);
+        }
+        if (rol.equals("Aseo") && ventanalogin.getTabla().equals("cabaña")) {
             jButton2.setVisible(true);
-        jTextField1.setVisible(true);
-        jLabel1.setVisible(true);
-        jLabel1.setText("ID");}
-        if(rol.equals("Aseo")&& ventanalogin.getTabla().equals("inventario")){
+            jTextField1.setVisible(true);
+            jLabel1.setVisible(true);
+            jLabel1.setText("ID");
+        }
+        if (rol.equals("Aseo") && ventanalogin.getTabla().equals("inventario")) {
             jButton2.setVisible(true);
-        jTextField1.setVisible(true);
-        jLabel1.setVisible(true);
-        jLabel1.setText("Objeto");}
-        if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("reserva")){
+            jTextField1.setVisible(true);
+            jLabel1.setVisible(true);
+            jLabel1.setText("Objeto");
+        }
+        if (rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("reserva")) {
             jButton2.setVisible(true);
-        jTextField1.setVisible(true);
-        jLabel1.setVisible(true);
-        jTextField2.setVisible(true);
-        jLabel2.setVisible(true);
-        jLabel2.setText("Fecha");}
-        
+            jTextField1.setVisible(true);
+            jLabel1.setVisible(true);
+            jTextField2.setVisible(true);
+            jLabel2.setVisible(true);
+            jLabel2.setText("Fecha");
+        }
+
     }
 
     /**
@@ -251,293 +257,302 @@ public class ventanaR extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        if((rol.equals("Aseo"))&& ventanalogin.getTabla().equals("inventario")){
+        if ((rol.equals("Aseo")) && ventanalogin.getTabla().equals("inventario")) {
             try {
-            Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from VistaAseoIn"); 
-            while (rs.next()) {
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from VistaAseoIn");
+                while (rs.next()) {
                     datos.add(
-                        "Nombre objeto: " + rs.getString(1)
-                        + "\tCantidad del Hotel: " + rs.getInt(2)+"\n");}
-            
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-        }if((rol.equals("Aseo"))&& ventanalogin.getTabla().equals("cabaña")){
-            try {
-            Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from VistaAseoCa"); 
-            while (rs.next()) {
-                    datos.add(
-                        "ID empleado: " + rs.getInt(1)
-                        + "\tNombre: " + rs.getString(2)
-                        + "\tApellido: " + rs.getString(3)
-                                + "\tTelefono: " + rs.getInt(4)
-                                + "\tJornada: " + rs.getString(5)
-                        + "\tCabaña asignada: " + rs.getInt(6)+"\n");}
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-        }
-        if((rol.equals("AtencionAlCliente") || rol.equals("AtencionAlCliente") )&& ventanalogin.getTabla().equals("parqueadero")){
-            try {
-            Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla()); 
-            String ocupado;
-            while (rs.next()) {
-                if(rs.getInt(2)==1){ocupado="Ocupado";}else{ocupado="Disponible";}
-                if(rs.getInt(3)==0){
-                    datos.add(
-                        "Número parqueadero: " + rs.getInt(1)
-                        + "\t" + ocupado+"\n");
-                }else{
-                    datos.add(
-                        "Número del parqueadero: " + rs.getInt(1)
-                        + "\t" + ocupado
-                        + "\tCabaña asociada: " + rs.getInt(3)+"\n");
+                            "Nombre objeto: " + rs.getString(1)
+                            + "\tCantidad del Hotel: " + rs.getInt(2) + "\n");
                 }
+
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
             }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
-        }        
         }
-        if(rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("cabaña")){
+        if ((rol.equals("Aseo")) && ventanalogin.getTabla().equals("cabaña")) {
             try {
-            Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla());            
-            while (rs.next()) {
-                datos.add(
-                        "Número de cabaña: " + rs.getInt(1)
-                        + "\tCapacidad: " + rs.getInt(2)
-                        + "\t\tCamas Dobles: " + rs.getInt(3)
-                        + "\tCamas Sencillas: " + rs.getInt(4)
-                        + "\tHabitaciones: " + rs.getInt(5)+"\n");
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from VistaAseoCa");
+                while (rs.next()) {
+                    datos.add(
+                            "ID empleado: " + rs.getInt(1)
+                            + "\tNombre: " + rs.getString(2)
+                            + "\tApellido: " + rs.getString(3)
+                            + "\tTelefono: " + rs.getInt(4)
+                            + "\tJornada: " + rs.getString(5)
+                            + "\tCabaña asignada: " + rs.getInt(6) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
             }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
-        }        
         }
-        if(rol.equals("AdministradorInventarios")&& ventanalogin.getTabla().equals("inventario")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from inventario"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Nombre producto/s: " + rs2.getString(1)
-                        + "\tProovedor: " + rs2.getString(2)
-                        + "\tCosto Producto: " + rs2.getFloat(3)
-                        + "\tCantidad por Habitacion: " + rs2.getInt(4)
-                        + "\tCantidad en hotel: " + rs2.getInt(5)
-                        + "\tID admnistrador: " + rs2.getInt(6)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-        }
-        if(rol.equals("AdministradorInventarios")&& ventanalogin.getTabla().equals("historial inventario")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from historial_inventario"); 
-            while (rs2.next()) {
-                datos.add(
-                        "ID Historial: " + rs2.getInt(1)
-                        + "\tAcción: " + rs2.getString(2)
-                        + "\t\tAntiguo Nombre: " + rs2.getString(3)
-                        + "\tNuevo Nombre: " + rs2.getString(4)
-                        + "\tAntiguo Proveedor: " + rs2.getString(5)
-                        + "\tNuevo Proveedor: " + rs2.getString(6)
-                        + "\tAntiguo Costo Producto: " + rs2.getBigDecimal(7)
-                        + "\tNuevo Costo Producto: " + rs2.getBigDecimal(8)
-                        + "\tAntigua Cantidad Habitación: " + rs2.getInt(9)
-                        + "\tNueva Cantidad Habitación: " + rs2.getInt(10)
-                        + "\tAntigua Cantidad Hotel: " + rs2.getInt(11)
-                        + "\tNueva Cantidad Hotel: " + rs2.getInt(12)
-                        + "\tAntiguo ID Administrador: " + rs2.getLong(13)
-                        + "\tNuevo ID Administrador: " + rs2.getLong(14)
-                        + "\tFecha Acción: " + rs2.getTimestamp(15)
-                        + "\tUsuario: " + rs2.getString(16) + "\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-        }
-        if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("servicios")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from cabaña_has_servicio"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Servicio: " + rs2.getString(1)
-                        + "\t\tCabaña que lo tiene: " + rs2.getInt(2)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-        }
-        if(rol.equals("AdministradorReservas")&& ventanalogin.getTabla().equals("servicios")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from vista_admin_reserva_cabaña_servicio"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Número de cabaña: " + rs2.getInt(1)
-                        + "\tCapacidad: " + rs2.getInt(2)
-                        + "\t\tCamas Dobles: " + rs2.getInt(3)
-                        + "\tCamas Sencillas: " + rs2.getInt(4)
-                        + "\tHabitaciones: " + rs2.getInt(5)
-                                + "\tServicio que tiene: " + rs2.getString(6)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-        }
-        if(rol.equals("AdministradorReservas")&& ventanalogin.getTabla().equals("sugerencia")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from sugerencia"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Id: " + rs2.getInt(1)
-                        + "\tFecha: " + rs2.getDate(2)
-                        + "\tDescripción: " + rs2.getString(3)
-                        + "\tId reserva asociada: " + rs2.getInt(4)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }
-        }
-        if(rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("reserva")){
+        if ((rol.equals("AtencionAlCliente") || rol.equals("AtencionAlCliente")) && ventanalogin.getTabla().equals("parqueadero")) {
             try {
-            Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from vista_admin_reserva_cabaña");            
-            while (rs.next()) {
-                datos.add(
-                        "Id Reserva: " + rs.getInt(1)
-                        + "\tCliente Id: " + rs.getInt(2)
-                        + "\tDuracion estadía: " + rs.getInt(3)
-                        + "\tCheck In: " + rs.getDate(4)
-                        + "\tCheck Out: " + rs.getDate(5)
-                        + "\tCosto: " + rs.getInt(6)
-                        + "\tMétodo de pago: " + rs.getString(7)+
-                                "Cantidad Huespedes: " + rs.getInt(8)
-                        + "\tAdmin Id: " + rs.getInt(9)
-                        + "\tTrabajador Id: " + rs.getInt(10)
-                        + "\tCapacidad Cabaña: " + rs.getInt(11)
-                        + "\tCAmas Dobles: " + rs.getInt(12)
-                        + "\tCamas sencillas: " + rs.getInt(13)
-                        + "\tHabitaciones: " + rs.getInt(14)+"\n");
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from " + ventanalogin.getTabla());
+                String ocupado;
+                while (rs.next()) {
+                    if (rs.getInt(2) == 1) {
+                        ocupado = "Ocupado";
+                    } else {
+                        ocupado = "Disponible";
+                    }
+                    if (rs.getInt(3) == 0) {
+                        datos.add(
+                                "Número parqueadero: " + rs.getInt(1)
+                                + "\t" + ocupado + "\n");
+                    } else {
+                        datos.add(
+                                "Número del parqueadero: " + rs.getInt(1)
+                                + "\t" + ocupado
+                                + "\tCabaña asociada: " + rs.getInt(3) + "\n");
+                    }
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+                System.out.println("Error de SQL: " + ex.getMessage());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("Código de error: " + ex.getErrorCode());
+                ex.printStackTrace();
             }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-        }  
-        if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("mascota")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from mascota"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Id Dueño: " + rs2.getInt(1)
-                        + "\tNombre mascota: " + rs2.getString(2)
-                        + "\tRaza: " + rs2.getString(3)
-                        + "\t\tEspecie: " + rs2.getString(4)
-                        + "\t\tGénero: " + rs2.getString(5)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }}
-            if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("cliente")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from cliente"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Id: " + rs2.getInt(1)
-                        + "\t\tNombre: " + rs2.getString(2)
-                        + "\t\tApellido: " + rs2.getString(3)
-                        + "\t\tVehículo: " + rs2.getString(4)
-                        + "\t\tNacionalidad: " + rs2.getString(5)
-                                + "\t\tTelefono: " + rs2.getInt(6)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }}
-            if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("reserva")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from reserva"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Id Reserva: " + rs2.getInt(1)
-                        + "\tCliente Id: " + rs2.getInt(2)
-                        + "\tCantidad de días: " + rs2.getInt(3)
-                        + "\tCheck In: " + rs2.getDate(4)
-                        + "\tCheck Out: " + rs2.getDate(5)
-                        + "\tCosto: " + rs2.getInt(6)
-                        + "\tMétodo de pago: " + rs2.getString(7)
-                        + "\tId Empleado: " + rs2.getInt(10)
-                        + "\tId Administrador: " + rs2.getInt(9)
-                                + "\tHuespedes: " + rs2.getInt(8)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
         }
+        if (rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("cabaña")) {
+            try {
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from " + ventanalogin.getTabla());
+                while (rs.next()) {
+                    datos.add(
+                            "Número de cabaña: " + rs.getInt(1)
+                            + "\tCapacidad: " + rs.getInt(2)
+                            + "\t\tCamas Dobles: " + rs.getInt(3)
+                            + "\tCamas Sencillas: " + rs.getInt(4)
+                            + "\tHabitaciones: " + rs.getInt(5) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+                System.out.println("Error de SQL: " + ex.getMessage());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("Código de error: " + ex.getErrorCode());
+                ex.printStackTrace();
             }
-        if(rol.equals("AdministradorReservas") && (ventanalogin.getTabla().equals("mascota") || ventanalogin.getTabla().equals("cliente"))){
+        }
+        if (rol.equals("AdministradorInventarios") && ventanalogin.getTabla().equals("inventario")) {
+            try {
+                Statement s2 = ventanalogin.getConexion().createStatement();
+                ResultSet rs2 = s2.executeQuery("select * from inventario");
+                while (rs2.next()) {
+                    datos.add(
+                            "Nombre producto/s: " + rs2.getString(1)
+                            + "\tProovedor: " + rs2.getString(2)
+                            + "\tCosto Producto: " + rs2.getFloat(3)
+                            + "\tCantidad por Habitacion: " + rs2.getInt(4)
+                            + "\tCantidad en hotel: " + rs2.getInt(5)
+                            + "\tID admnistrador: " + rs2.getInt(6) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+            }
+        }
+        if (rol.equals("AdministradorInventarios") && ventanalogin.getTabla().equals("historial inventario")) {
+            try {
+                Statement s2 = ventanalogin.getConexion().createStatement();
+                ResultSet rs2 = s2.executeQuery("select * from historial_inventario");
+                while (rs2.next()) {
+                    datos.add(
+                            "ID Historial: " + rs2.getInt(1)
+                            + "\tAcción: " + rs2.getString(2)
+                            + "\t\tAntiguo Nombre: " + rs2.getString(3)
+                            + "\tNuevo Nombre: " + rs2.getString(4)
+                            + "\tAntiguo Proveedor: " + rs2.getString(5)
+                            + "\tNuevo Proveedor: " + rs2.getString(6)
+                            + "\tAntiguo Costo Producto: " + rs2.getBigDecimal(7)
+                            + "\tNuevo Costo Producto: " + rs2.getBigDecimal(8)
+                            + "\tAntigua Cantidad Habitación: " + rs2.getInt(9)
+                            + "\tNueva Cantidad Habitación: " + rs2.getInt(10)
+                            + "\tAntigua Cantidad Hotel: " + rs2.getInt(11)
+                            + "\tNueva Cantidad Hotel: " + rs2.getInt(12)
+                            + "\tAntiguo ID Administrador: " + rs2.getLong(13)
+                            + "\tNuevo ID Administrador: " + rs2.getLong(14)
+                            + "\tFecha Acción: " + rs2.getTimestamp(15)
+                            + "\tUsuario: " + rs2.getString(16) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+            }
+        }
+        if (rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("servicios")) {
+            try {
+                Statement s2 = ventanalogin.getConexion().createStatement();
+                ResultSet rs2 = s2.executeQuery("select * from cabaña_has_servicio");
+                while (rs2.next()) {
+                    datos.add(
+                            "Servicio: " + rs2.getString(1)
+                            + "\t\tCabaña que lo tiene: " + rs2.getInt(2) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+            }
+        }
+        if (rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("servicios")) {
+            try {
+                Statement s2 = ventanalogin.getConexion().createStatement();
+                ResultSet rs2 = s2.executeQuery("select * from vista_admin_reserva_cabaña_servicio");
+                while (rs2.next()) {
+                    datos.add(
+                            "Número de cabaña: " + rs2.getInt(1)
+                            + "\tCapacidad: " + rs2.getInt(2)
+                            + "\t\tCamas Dobles: " + rs2.getInt(3)
+                            + "\tCamas Sencillas: " + rs2.getInt(4)
+                            + "\tHabitaciones: " + rs2.getInt(5)
+                            + "\tServicio que tiene: " + rs2.getString(6) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+            }
+        }
+        if (rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("sugerencia")) {
+            try {
+                Statement s2 = ventanalogin.getConexion().createStatement();
+                ResultSet rs2 = s2.executeQuery("select * from sugerencia");
+                while (rs2.next()) {
+                    datos.add(
+                            "Id: " + rs2.getInt(1)
+                            + "\tFecha: " + rs2.getDate(2)
+                            + "\tDescripción: " + rs2.getString(3)
+                            + "\tId reserva asociada: " + rs2.getInt(4) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+            }
+        }
+        if (rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("reserva")) {
+            try {
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from vista_admin_reserva_cabaña");
+                while (rs.next()) {
+                    datos.add(
+                            "Id Reserva: " + rs.getInt(1)
+                            + "\tCliente Id: " + rs.getInt(2)
+                            + "\tDuracion estadía: " + rs.getInt(3)
+                            + "\tCheck In: " + rs.getDate(4)
+                            + "\tCheck Out: " + rs.getDate(5)
+                            + "\tCosto: " + rs.getInt(6)
+                            + "\tMétodo de pago: " + rs.getString(7)
+                            + "Cantidad Huespedes: " + rs.getInt(8)
+                            + "\tAdmin Id: " + rs.getInt(9)
+                            + "\tTrabajador Id: " + rs.getInt(10)
+                            + "\tCapacidad Cabaña: " + rs.getInt(11)
+                            + "\tCAmas Dobles: " + rs.getInt(12)
+                            + "\tCamas sencillas: " + rs.getInt(13)
+                            + "\tHabitaciones: " + rs.getInt(14) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+            }
+        }
+        if (rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("mascota")) {
+            try {
+                Statement s2 = ventanalogin.getConexion().createStatement();
+                ResultSet rs2 = s2.executeQuery("select * from mascota");
+                while (rs2.next()) {
+                    datos.add(
+                            "Id Dueño: " + rs2.getInt(1)
+                            + "\tNombre mascota: " + rs2.getString(2)
+                            + "\tRaza: " + rs2.getString(3)
+                            + "\t\tEspecie: " + rs2.getString(4)
+                            + "\t\tGénero: " + rs2.getString(5) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+            }
+        }
+        if (rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("cliente")) {
+            try {
+                Statement s2 = ventanalogin.getConexion().createStatement();
+                ResultSet rs2 = s2.executeQuery("select * from cliente");
+                while (rs2.next()) {
+                    datos.add(
+                            "Id: " + rs2.getInt(1)
+                            + "\t\tNombre: " + rs2.getString(2)
+                            + "\t\tApellido: " + rs2.getString(3)
+                            + "\t\tVehículo: " + rs2.getString(4)
+                            + "\t\tNacionalidad: " + rs2.getString(5)
+                            + "\t\tTelefono: " + rs2.getInt(6) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+            }
+        }
+        if (rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("reserva")) {
+            try {
+                Statement s2 = ventanalogin.getConexion().createStatement();
+                ResultSet rs2 = s2.executeQuery("select * from reserva");
+                while (rs2.next()) {
+                    datos.add(
+                            "Id Reserva: " + rs2.getInt(1)
+                            + "\tCliente Id: " + rs2.getInt(2)
+                            + "\tCantidad de días: " + rs2.getInt(3)
+                            + "\tCheck In: " + rs2.getDate(4)
+                            + "\tCheck Out: " + rs2.getDate(5)
+                            + "\tCosto: " + rs2.getInt(6)
+                            + "\tMétodo de pago: " + rs2.getString(7)
+                            + "\tId Empleado: " + rs2.getInt(10)
+                            + "\tId Administrador: " + rs2.getInt(9)
+                            + "\tHuespedes: " + rs2.getInt(8) + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+                System.out.println("Error de SQL: " + ex.getMessage());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("Código de error: " + ex.getErrorCode());
+                ex.printStackTrace();
+            }
+        }
+        if (rol.equals("AdministradorReservas") && (ventanalogin.getTabla().equals("mascota") || ventanalogin.getTabla().equals("cliente"))) {
             try {
                 Statement s = ventanalogin.getConexion().createStatement();
                 ResultSet rs = s.executeQuery("select * from vista_admin_reserva_huespedes");
                 while (rs.next()) {
                     datos.add(
-                        "Id Cliente: " + rs.getInt(1)
-                        + "\tNombre: " + rs.getString(2)
-                        + "\tApellido: " + rs.getString(3)
-                        + "\tVehículo: " + rs.getString(4)
-                        + "\tNacionalidad: " + rs.getString(5)
-                        + "\tTelefono: " + rs.getInt(6)
-                        + "\tNombre Mascota: " + rs.getString(7)
-                        + "\tRaza: " + rs.getString(8)
-                        + "\tGénero: " + rs.getString(9)+"\n");
+                            "Id Cliente: " + rs.getInt(1)
+                            + "\tNombre: " + rs.getString(2)
+                            + "\tApellido: " + rs.getString(3)
+                            + "\tVehículo: " + rs.getString(4)
+                            + "\tNacionalidad: " + rs.getString(5)
+                            + "\tTelefono: " + rs.getInt(6)
+                            + "\tNombre Mascota: " + rs.getString(7)
+                            + "\tRaza: " + rs.getString(8)
+                            + "\tGénero: " + rs.getString(9) + "\n");
                 }
             } catch (SQLException ex) {
                 System.out.println("Imposible realizar consulta ... FAIL");
             }
         }
-        if(rol.equals("AdministradorReservas") && (ventanalogin.getTabla().equals("historial paseos"))){
+        if (rol.equals("AdministradorReservas") && (ventanalogin.getTabla().equals("historial paseos"))) {
             try {
                 Statement s = ventanalogin.getConexion().createStatement();
                 ResultSet rs = s.executeQuery("select * from registro_paseos;");
                 while (rs.next()) {
                     datos.add(
-                        "Registro: " + rs.getInt(1)
-                        + "\tId Cliente: " + rs.getInt(2)
-                        + "\tNombre Mascota: " + rs.getString(3)
-                        + "\tHora inicio: " + rs.getTime(4)
-                        + "\tHora finalizacion: " + rs.getTime(5)
-                        + "\tFecha: " + rs.getDate(6)
-                        + "\tCuidador: " + rs.getString(7)+"\n");
+                            "Registro: " + rs.getInt(1)
+                            + "\tId Cliente: " + rs.getInt(2)
+                            + "\tNombre Mascota: " + rs.getString(3)
+                            + "\tHora inicio: " + rs.getTime(4)
+                            + "\tHora finalizacion: " + rs.getTime(5)
+                            + "\tFecha: " + rs.getDate(6)
+                            + "\tCuidador: " + rs.getString(7) + "\n");
                 }
             } catch (SQLException ex) {
                 System.out.println("Imposible realizar consulta ... FAIL");
                 System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("Código de error: " + ex.getErrorCode());
             }
         }
-        jTextArea1.setText(""+datos);
-        datos.clear();        
+        jTextArea1.setText("" + datos);
+        datos.clear();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -546,350 +561,366 @@ public class ventanaR extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        if(rol.equals("AdministradorReservas")&& ventanalogin.getTabla().equals("sugerencia")){
-            if(jTextField2.getText().equals("0")){         
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from sugerencia WHERE  sug_fecha = '"+jTextField1.getText()+"' ;"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Id: " + rs2.getInt(1)
-                        + "\tFecha: " + rs2.getDate(2)
-                        + "\tDescripción: " + rs2.getString(3)
-                        + "\tId reserva asociada: " + rs2.getInt(4)+"\n");
+        if (rol.equals("AdministradorReservas") && ventanalogin.getTabla().equals("sugerencia")) {
+            if (jTextField2.getText().equals("0")) {
+                try {
+                    Statement s2 = ventanalogin.getConexion().createStatement();
+                    ResultSet rs2 = s2.executeQuery("select * from sugerencia WHERE  sug_fecha = '" + jTextField1.getText() + "' ;");
+                    while (rs2.next()) {
+                        datos.add(
+                                "Id: " + rs2.getInt(1)
+                                + "\tFecha: " + rs2.getDate(2)
+                                + "\tDescripción: " + rs2.getString(3)
+                                + "\tId reserva asociada: " + rs2.getInt(4) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                    ex.printStackTrace();
+                }
             }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
+            if (jTextField1.getText().equals("0")) {
+                try {
+                    Statement s2 = ventanalogin.getConexion().createStatement();
+                    ResultSet rs2 = s2.executeQuery("select * from sugerencia WHERE  sug_res_id = " + jTextField2.getText() + ";");
+                    while (rs2.next()) {
+                        datos.add(
+                                "Id: " + rs2.getInt(1)
+                                + "\tFecha: " + rs2.getDate(2)
+                                + "\tDescripción: " + rs2.getString(3)
+                                + "\tId reserva asociada: " + rs2.getInt(4) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                    ex.printStackTrace();
+                }
+            } else {
+                try {
+                    Statement s2 = ventanalogin.getConexion().createStatement();
+                    ResultSet rs2 = s2.executeQuery("select * from sugerencia WHERE  sug_res_id = " + jTextField2.getText() + " AND sug_fecha '" + jTextField1.getText() + "' ;");
+                    while (rs2.next()) {
+                        datos.add(
+                                "Id: " + rs2.getInt(1)
+                                + "\tFecha: " + rs2.getDate(2)
+                                + "\tDescripción: " + rs2.getString(3)
+                                + "\tId reserva asociada: " + rs2.getInt(4) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                    ex.printStackTrace();
+                }
+            }
         }
+
+        if (rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("mascota")) {
+            if (jTextField2.getText().equals("0")) {
+                try {
+                    Statement s2 = ventanalogin.getConexion().createStatement();
+                    ResultSet rs2 = s2.executeQuery("select * from mascota WHERE  mas_cli_id = " + jTextField1.getText() + ";");
+                    while (rs2.next()) {
+                        datos.add(
+                                "Id Dueño: " + rs2.getInt(1)
+                                + "\tNombre mascota: " + rs2.getString(2)
+                                + "\tRaza: " + rs2.getString(3)
+                                + "\t\tEspecie: " + rs2.getString(4)
+                                + "\t\tGénero: " + rs2.getString(5) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                    ex.printStackTrace();
+                }
+            }
+            if (jTextField1.getText().equals("0")) {
+                try {
+                    Statement s2 = ventanalogin.getConexion().createStatement();
+                    ResultSet rs2 = s2.executeQuery("select * from mascota WHERE  mas_nombre= '" + jTextField2.getText() + "';");
+                    while (rs2.next()) {
+                        datos.add(
+                                "Id Dueño: " + rs2.getInt(1)
+                                + "\tNombre mascota: " + rs2.getString(2)
+                                + "\tRaza: " + rs2.getString(3)
+                                + "\t\tEspecie: " + rs2.getString(4)
+                                + "\t\tGénero: " + rs2.getString(5) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                    ex.printStackTrace();
+                }
+            } else {
+                try {
+                    Statement s2 = ventanalogin.getConexion().createStatement();
+                    ResultSet rs2 = s2.executeQuery("select * from mascota WHERE  mas_cli_id= " + jTextField1.getText() + " AND mas_nombre= '" + jTextField2.getText() + "';");
+                    while (rs2.next()) {
+                        datos.add(
+                                "Id Dueño: " + rs2.getInt(1)
+                                + "\tNombre mascota: " + rs2.getString(2)
+                                + "\tRaza: " + rs2.getString(3)
+                                + "\t\tEspecie: " + rs2.getString(4)
+                                + "\t\tGénero: " + rs2.getString(5) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                    ex.printStackTrace();
+                }
+            }
         }
-            if(jTextField1.getText().equals("0")){         
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from sugerencia WHERE  sug_res_id = "+jTextField2.getText()+";"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Id: " + rs2.getInt(1)
-                        + "\tFecha: " + rs2.getDate(2)
-                        + "\tDescripción: " + rs2.getString(3)
-                        + "\tId reserva asociada: " + rs2.getInt(4)+"\n");
+        if (rol.equals("AdministradorReservas") && (ventanalogin.getTabla().equals("historial paseos"))) {
+            if (jTextField2.getText().equals("0")) {
+                try {
+                    Statement s = ventanalogin.getConexion().createStatement();
+                    ResultSet rs = s.executeQuery("select * from registro_paseos WHERE  mas_cli_id= " + jTextField1.getText() + ";");
+                    while (rs.next()) {
+                        datos.add(
+                                "Registro: " + rs.getInt(1)
+                                + "\tId Cliente: " + rs.getInt(2)
+                                + "\tNombre Mascota: " + rs.getString(3)
+                                + "\tHora inicio: " + rs.getTime(4)
+                                + "\tHora finalizacion: " + rs.getTime(5)
+                                + "\tFecha: " + rs.getDate(6)
+                                + "\tCuidador: " + rs.getString(7) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                }
             }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
+            if (jTextField1.getText().equals("0")) {
+                try {
+                    Statement s = ventanalogin.getConexion().createStatement();
+                    ResultSet rs = s.executeQuery("select * from registro_paseos WHERE  mas_nombre= '" + jTextField2.getText() + "';");
+                    while (rs.next()) {
+                        datos.add(
+                                "Registro: " + rs.getInt(1)
+                                + "\tId Cliente: " + rs.getInt(2)
+                                + "\tNombre Mascota: " + rs.getString(3)
+                                + "\tHora inicio: " + rs.getTime(4)
+                                + "\tHora finalizacion: " + rs.getTime(5)
+                                + "\tFecha: " + rs.getDate(6)
+                                + "\tCuidador: " + rs.getString(7) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                }
+            } else {
+                try {
+                    Statement s = ventanalogin.getConexion().createStatement();
+                    ResultSet rs = s.executeQuery("select * from registro_paseos WHERE  mas_cli_id= " + jTextField1.getText() + " AND mas_nombre= '" + jTextField2.getText() + "';");
+                    while (rs.next()) {
+                        datos.add(
+                                "Registro: " + rs.getInt(1)
+                                + "\tId Cliente: " + rs.getInt(2)
+                                + "\tNombre Mascota: " + rs.getString(3)
+                                + "\tHora inicio: " + rs.getTime(4)
+                                + "\tHora finalizacion: " + rs.getTime(5)
+                                + "\tFecha: " + rs.getDate(6)
+                                + "\tCuidador: " + rs.getString(7) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                }
+            }
         }
-        }else{
-                try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from sugerencia WHERE  sug_res_id = "+jTextField2.getText()+" AND sug_fecha '"+jTextField1.getText()+"' ;"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Id: " + rs2.getInt(1)
-                        + "\tFecha: " + rs2.getDate(2)
-                        + "\tDescripción: " + rs2.getString(3)
-                        + "\tId reserva asociada: " + rs2.getInt(4)+"\n");
+
+        if (rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("cliente")) {
+            if (jTextField2.getText().equals("0")) {
+                try {
+                    Statement s2 = ventanalogin.getConexion().createStatement();
+                    ResultSet rs2 = s2.executeQuery("select * from cliente WHERE cli_id = " + jTextField1.getText() + ";");
+                    while (rs2.next()) {
+                        datos.add(
+                                "Id: " + rs2.getInt(1)
+                                + "\t\tNombre: " + rs2.getString(2)
+                                + "\t\tApellido: " + rs2.getString(3)
+                                + "\t\tVehículo: " + rs2.getString(4)
+                                + "\t\tNacionalidad: " + rs2.getString(5)
+                                + "\t\tTelefono: " + rs2.getInt(6) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                    ex.printStackTrace();
+                }
             }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
+            if (jTextField1.getText().equals("0")) {
+                try {
+                    Statement s2 = ventanalogin.getConexion().createStatement();
+                    ResultSet rs2 = s2.executeQuery("select * from cliente WHERE cli_apellido = '" + jTextField2.getText() + "' ;");
+                    while (rs2.next()) {
+                        datos.add(
+                                "Id: " + rs2.getInt(1)
+                                + "\t\tNombre: " + rs2.getString(2)
+                                + "\t\tApellido: " + rs2.getString(3)
+                                + "\t\tVehículo: " + rs2.getString(4)
+                                + "\t\tNacionalidad: " + rs2.getString(5)
+                                + "\t\tTelefono: " + rs2.getInt(6) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                    ex.printStackTrace();
+                }
+            } else {
+                try {
+                    Statement s2 = ventanalogin.getConexion().createStatement();
+                    ResultSet rs2 = s2.executeQuery("select * from cliente WHERE cli_apellido = '" + jTextField2.getText() + "' AND cli_id = " + jTextField1.getText() + ";");
+                    while (rs2.next()) {
+                        datos.add(
+                                "Id: " + rs2.getInt(1)
+                                + "\t\tNombre: " + rs2.getString(2)
+                                + "\t\tApellido: " + rs2.getString(3)
+                                + "\t\tVehículo: " + rs2.getString(4)
+                                + "\t\tNacionalidad: " + rs2.getString(5)
+                                + "\t\tTelefono: " + rs2.getInt(6) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                    ex.printStackTrace();
+                }
+            }
         }
+
+        if (rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("reserva")) {
+            if (jTextField2.getText().equals("0")) {
+                try {
+                    Statement s2 = ventanalogin.getConexion().createStatement();
+                    ResultSet rs2 = s2.executeQuery("select * from reserva WHERE res_cli_id= " + jTextField1.getText() + ";");
+                    while (rs2.next()) {
+                        datos.add(
+                                "Id Reserva: " + rs2.getInt(1)
+                                + "\tCliente Id: " + rs2.getInt(2)
+                                + "\tCantidad de días: " + rs2.getInt(3)
+                                + "\tCheck In: " + rs2.getDate(4)
+                                + "\tCheck Out: " + rs2.getDate(5)
+                                + "\tCosto: " + rs2.getInt(6)
+                                + "\tMétodo de pago: " + rs2.getString(7)
+                                + "\tId Empleado: " + rs2.getInt(10)
+                                + "\tId Administrador: " + rs2.getInt(9)
+                                + "\tHuespedes: " + rs2.getInt(8) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                    ex.printStackTrace();
+                }
+            }
+            if (jTextField1.getText().equals("0")) {
+                try {
+                    Statement s2 = ventanalogin.getConexion().createStatement();
+                    ResultSet rs2 = s2.executeQuery("select * from reserva WHERE res_check_in =  '" + jTextField2.getText() + "' OR res_check_out = '" + jTextField2.getText() + "';");
+                    while (rs2.next()) {
+                        datos.add(
+                                "Id Reserva: " + rs2.getInt(1)
+                                + "\tCliente Id: " + rs2.getInt(2)
+                                + "\tCantidad de días: " + rs2.getInt(3)
+                                + "\tCheck In: " + rs2.getDate(4)
+                                + "\tCheck Out: " + rs2.getDate(5)
+                                + "\tCosto: " + rs2.getInt(6)
+                                + "\tMétodo de pago: " + rs2.getString(7)
+                                + "\tId Empleado: " + rs2.getInt(10)
+                                + "\tId Administrador: " + rs2.getInt(9)
+                                + "\tHuespedes: " + rs2.getInt(8) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                    ex.printStackTrace();
+                }
+            } else {
+                try {
+                    Statement s2 = ventanalogin.getConexion().createStatement();
+                    ResultSet rs2 = s2.executeQuery("select * from reserva WHERE res_cli_id= " + jTextField1.getText() + " AND (res_check_in =  '" + jTextField2.getText() + "' OR res_check_out = '" + jTextField2.getText() + "');");
+                    while (rs2.next()) {
+                        datos.add(
+                                "Id Reserva: " + rs2.getInt(1)
+                                + "\tCliente Id: " + rs2.getInt(2)
+                                + "\tCantidad de días: " + rs2.getInt(3)
+                                + "\tCheck In: " + rs2.getDate(4)
+                                + "\tCheck Out: " + rs2.getDate(5)
+                                + "\tCosto: " + rs2.getInt(6)
+                                + "\tMétodo de pago: " + rs2.getString(7)
+                                + "\tId Empleado: " + rs2.getInt(10)
+                                + "\tId Administrador: " + rs2.getInt(9)
+                                + "\tHuespedes: " + rs2.getInt(8) + "\n");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("Imposible realizar consulta ... FAIL");
+                    System.out.println("Error de SQL: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("Código de error: " + ex.getErrorCode());
+                    ex.printStackTrace();
+                }
+
             }
         }
-      
-        if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("mascota")){
-            if(jTextField2.getText().equals("0")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from mascota WHERE  mas_cli_id = "+jTextField1.getText()+";"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Id Dueño: " + rs2.getInt(1)
-                        + "\tNombre mascota: " + rs2.getString(2)
-                        + "\tRaza: " + rs2.getString(3)
-                        + "\t\tEspecie: " + rs2.getString(4)
-                        + "\t\tGénero: " + rs2.getString(5)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
-        }}
-            if(jTextField1.getText().equals("0")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from mascota WHERE  mas_nombre= '"+jTextField2.getText()+"';"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Id Dueño: " + rs2.getInt(1)
-                        + "\tNombre mascota: " + rs2.getString(2)
-                        + "\tRaza: " + rs2.getString(3)
-                        + "\t\tEspecie: " + rs2.getString(4)
-                        + "\t\tGénero: " + rs2.getString(5)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
-        }}else{
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from mascota WHERE  mas_cli_id= "+jTextField1.getText()+" AND mas_nombre= '"+jTextField2.getText()+"';");
-            while (rs2.next()) {
-                datos.add(
-                        "Id Dueño: " + rs2.getInt(1)
-                        + "\tNombre mascota: " + rs2.getString(2)
-                        + "\tRaza: " + rs2.getString(3)
-                        + "\t\tEspecie: " + rs2.getString(4)
-                        + "\t\tGénero: " + rs2.getString(5)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
-        }}}
-       if(rol.equals("AdministradorReservas") && (ventanalogin.getTabla().equals("historial paseos"))){
-           if(jTextField2.getText().equals("0")){
-           try {
+        if ((rol.equals("Aseo")) && ventanalogin.getTabla().equals("inventario")) {
+            try {
                 Statement s = ventanalogin.getConexion().createStatement();
-                ResultSet rs = s.executeQuery("select * from registro_paseos WHERE  mas_cli_id= "+jTextField1.getText()+";");
+                ResultSet rs = s.executeQuery("select * from VistaAseoIn WHERE inv_nombre = '" + jTextField1.getText() + "' ;");
                 while (rs.next()) {
                     datos.add(
-                        "Registro: " + rs.getInt(1)
-                        + "\tId Cliente: " + rs.getInt(2)
-                        + "\tNombre Mascota: " + rs.getString(3)
-                        + "\tHora inicio: " + rs.getTime(4)
-                        + "\tHora finalizacion: " + rs.getTime(5)
-                        + "\tFecha: " + rs.getDate(6)
-                        + "\tCuidador: " + rs.getString(7)+"\n");
+                            "Nombre objeto: " + rs.getString(1)
+                            + "\tCantidad del Hotel: " + rs.getInt(2) + "\n");
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+            }
+        }
+        if ((rol.equals("Aseo")) && ventanalogin.getTabla().equals("cabaña")) {
+            try {
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from VistaAseoCa WHERE tra_id = '" + jTextField1.getText() + "' ;");
+                while (rs.next()) {
+                    datos.add(
+                            "ID empleado: " + rs.getInt(1)
+                            + "\tNombre: " + rs.getString(2)
+                            + "\tApellido: " + rs.getString(3)
+                            + "\tTelefono: " + rs.getInt(4)
+                            + "\tJornada: " + rs.getString(5)
+                            + "\tCabaña asignada: " + rs.getInt(6) + "\n");
                 }
             } catch (SQLException ex) {
                 System.out.println("Imposible realizar consulta ... FAIL");
-                System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());} } 
-           if(jTextField1.getText().equals("0")){
-           try {
-                Statement s = ventanalogin.getConexion().createStatement();
-                ResultSet rs = s.executeQuery("select * from registro_paseos WHERE  mas_nombre= '"+jTextField2.getText()+"';");
-                while (rs.next()) {
-                    datos.add(
-                        "Registro: " + rs.getInt(1)
-                        + "\tId Cliente: " + rs.getInt(2)
-                        + "\tNombre Mascota: " + rs.getString(3)
-                        + "\tHora inicio: " + rs.getTime(4)
-                        + "\tHora finalizacion: " + rs.getTime(5)
-                        + "\tFecha: " + rs.getDate(6)
-                        + "\tCuidador: " + rs.getString(7)+"\n");
-                }
-            } catch (SQLException ex) {
-                System.out.println("Imposible realizar consulta ... FAIL");
-                System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());} } 
-           else{
-            try {
-                Statement s = ventanalogin.getConexion().createStatement();
-                ResultSet rs = s.executeQuery("select * from registro_paseos WHERE  mas_cli_id= "+jTextField1.getText()+" AND mas_nombre= '"+jTextField2.getText()+"';");
-                while (rs.next()) {
-                    datos.add(
-                        "Registro: " + rs.getInt(1)
-                        + "\tId Cliente: " + rs.getInt(2)
-                        + "\tNombre Mascota: " + rs.getString(3)
-                        + "\tHora inicio: " + rs.getTime(4)
-                        + "\tHora finalizacion: " + rs.getTime(5)
-                        + "\tFecha: " + rs.getDate(6)
-                        + "\tCuidador: " + rs.getString(7)+"\n");
-                }
-            } catch (SQLException ex) {
-                System.out.println("Imposible realizar consulta ... FAIL");
-                System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            }}
+            }
         }
-       
-       if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("cliente")){
-           if(jTextField2.getText().equals("0")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from cliente WHERE cli_id = "+jTextField1.getText()+";"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Id: " + rs2.getInt(1)
-                        + "\t\tNombre: " + rs2.getString(2)
-                        + "\t\tApellido: " + rs2.getString(3)
-                        + "\t\tVehículo: " + rs2.getString(4)
-                        + "\t\tNacionalidad: " + rs2.getString(5)
-                                + "\t\tTelefono: " + rs2.getInt(6)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
-        }}
-           if(jTextField1.getText().equals("0")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from cliente WHERE cli_apellido = '"+jTextField2.getText()+"' ;"); 
-            while(rs2.next()) {
-                datos.add(
-                        "Id: " + rs2.getInt(1)
-                        + "\t\tNombre: " + rs2.getString(2)
-                        + "\t\tApellido: " + rs2.getString(3)
-                        + "\t\tVehículo: " + rs2.getString(4)
-                        + "\t\tNacionalidad: " + rs2.getString(5)
-                                + "\t\tTelefono: " + rs2.getInt(6)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
-        }}else{
-               try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from cliente WHERE cli_apellido = '"+jTextField2.getText()+"' AND cli_id = "+jTextField1.getText()+";"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Id: " + rs2.getInt(1)
-                        + "\t\tNombre: " + rs2.getString(2)
-                        + "\t\tApellido: " + rs2.getString(3)
-                        + "\t\tVehículo: " + rs2.getString(4)
-                        + "\t\tNacionalidad: " + rs2.getString(5)
-                                + "\t\tTelefono: " + rs2.getInt(6)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
-        }           
-           }       
-       }
-       
-        if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("reserva")){
-            if(jTextField2.getText().equals("0")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from reserva WHERE res_cli_id= "+jTextField1.getText()+";");  
-            while (rs2.next()) {
-                datos.add(
-                        "Id Reserva: " + rs2.getInt(1)
-                        + "\tCliente Id: " + rs2.getInt(2)
-                        + "\tCantidad de días: " + rs2.getInt(3)
-                        + "\tCheck In: " + rs2.getDate(4)
-                        + "\tCheck Out: " + rs2.getDate(5)
-                        + "\tCosto: " + rs2.getInt(6)
-                        + "\tMétodo de pago: " + rs2.getString(7)
-                        + "\tId Empleado: " + rs2.getInt(10)
-                        + "\tId Administrador: " + rs2.getInt(9)
-                                + "\tHuespedes: " + rs2.getInt(8)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
-        }}if(jTextField1.getText().equals("0")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from reserva WHERE res_check_in =  '"+jTextField2.getText()+"' OR res_check_out = '"+jTextField2.getText()+"';");  
-            while (rs2.next()) {
-                datos.add(
-                        "Id Reserva: " + rs2.getInt(1)
-                        + "\tCliente Id: " + rs2.getInt(2)
-                        + "\tCantidad de días: " + rs2.getInt(3)
-                        + "\tCheck In: " + rs2.getDate(4)
-                        + "\tCheck Out: " + rs2.getDate(5)
-                        + "\tCosto: " + rs2.getInt(6)
-                        + "\tMétodo de pago: " + rs2.getString(7)
-                        + "\tId Empleado: " + rs2.getInt(10)
-                        + "\tId Administrador: " + rs2.getInt(9)
-                                + "\tHuespedes: " + rs2.getInt(8)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
-        }}else{
-             try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from reserva WHERE res_cli_id= "+jTextField1.getText()+" AND (res_check_in =  '"+jTextField2.getText()+"' OR res_check_out = '"+jTextField2.getText()+"');");
-            while (rs2.next()) {
-                datos.add(
-                        "Id Reserva: " + rs2.getInt(1)
-                        + "\tCliente Id: " + rs2.getInt(2)
-                        + "\tCantidad de días: " + rs2.getInt(3)
-                        + "\tCheck In: " + rs2.getDate(4)
-                        + "\tCheck Out: " + rs2.getDate(5)
-                        + "\tCosto: " + rs2.getInt(6)
-                        + "\tMétodo de pago: " + rs2.getString(7)
-                        + "\tId Empleado: " + rs2.getInt(10)
-                        + "\tId Administrador: " + rs2.getInt(9)
-                                + "\tHuespedes: " + rs2.getInt(8)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-            System.out.println("Error de SQL: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("Código de error: " + ex.getErrorCode());
-            ex.printStackTrace();
-        }
-        
-        }
-            }
-        if((rol.equals("Aseo"))&& ventanalogin.getTabla().equals("inventario")){
-            try {
-            Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from VistaAseoIn WHERE inv_nombre = '"+jTextField1.getText()+"' ;"); 
-            while (rs.next()) {
-                    datos.add(
-                        "Nombre objeto: " + rs.getString(1)
-                        + "\tCantidad del Hotel: " + rs.getInt(2)+"\n");}
-            
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-        }if((rol.equals("Aseo"))&& ventanalogin.getTabla().equals("cabaña")){
-            try {
-            Statement s = ventanalogin.getConexion().createStatement();
-            ResultSet rs = s.executeQuery("select * from VistaAseoCa WHERE tra_id = '"+jTextField1.getText()+"' ;"); 
-            while (rs.next()) {
-                    datos.add(
-                        "ID empleado: " + rs.getInt(1)
-                        + "\tNombre: " + rs.getString(2)
-                        + "\tApellido: " + rs.getString(3)
-                                + "\tTelefono: " + rs.getInt(4)
-                                + "\tJornada: " + rs.getString(5)
-                        + "\tCabaña asignada: " + rs.getInt(6)+"\n");}
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-        }
-        jTextArea1.setText(""+datos);
-        datos.clear();  
+        jTextArea1.setText("" + datos);
+        datos.clear();
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -926,10 +957,10 @@ public class ventanaR extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ventanaR().setVisible(true);                
+                new ventanaR().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

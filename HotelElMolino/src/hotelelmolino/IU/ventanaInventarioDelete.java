@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hotelelmolino.IU;
+
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -12,9 +13,11 @@ import javax.swing.JOptionPane;
  * @author David
  */
 public class ventanaInventarioDelete extends javax.swing.JFrame {
+
     ventanaLogin ventanalogin = new ventanaLogin();
     static ArrayList<String> datos = new ArrayList<String>();
-    String rol =ventanalogin.getRol();
+    String rol = ventanalogin.getRol();
+
     /**
      * Creates new form ventanaInventarioDelete
      */
@@ -181,25 +184,25 @@ public class ventanaInventarioDelete extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        try {            
+        try {
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from inventario"); 
+            ResultSet rs2 = s2.executeQuery("select * from inventario");
             while (rs2.next()) {
                 datos.add(
-                    "Nombre producto/s: " + rs2.getString(1)
-                    + "\tProovedor: " + rs2.getString(2)
-                    + "\tCosto Producto: " + rs2.getFloat(3)
-                    + "\tCantidad por Habitacion: " + rs2.getInt(4)
-                    + "\tCantidad en hotel: " + rs2.getInt(5)
-                    + "\tID admnistrador: " + rs2.getInt(6)+"\n");
+                        "Nombre producto/s: " + rs2.getString(1)
+                        + "\tProovedor: " + rs2.getString(2)
+                        + "\tCosto Producto: " + rs2.getFloat(3)
+                        + "\tCantidad por Habitacion: " + rs2.getInt(4)
+                        + "\tCantidad en hotel: " + rs2.getInt(5)
+                        + "\tID admnistrador: " + rs2.getInt(6) + "\n");
             }
         } catch (SQLException ex) {
-                System.out.println("Imposible realizar consulta ... FAIL");
-                System.out.println("Error de SQL: " + ex.getMessage());
-                System.out.println("SQLState: " + ex.getSQLState());
-                System.out.println("Código de error: " + ex.getErrorCode());
+            System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
         }
-        jTextArea1.setText(""+datos);
+        jTextArea1.setText("" + datos);
         datos.clear();
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -214,15 +217,15 @@ public class ventanaInventarioDelete extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         try {
-            PreparedStatement eliminar = ventanalogin.getConexion().prepareStatement("DELETE FROM "+ventanalogin.getTabla()+" WHERE inv_nombre=?");
+            PreparedStatement eliminar = ventanalogin.getConexion().prepareStatement("DELETE FROM " + ventanalogin.getTabla() + " WHERE inv_nombre=?");
             eliminar.setString(1, jTextField1.getText());
             int retorno = eliminar.executeUpdate();
             JOptionPane.showMessageDialog(null, "Ejecución exitosa");
         } catch (SQLException ex) {
-                System.out.println("Imposible realizar consulta ... FAIL");
-                System.out.println("Error de SQL: " + ex.getMessage());
-                System.out.println("SQLState: " + ex.getSQLState());
-                System.out.println("Código de error: " + ex.getErrorCode());
+            System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
         }
     }//GEN-LAST:event_jButton2MouseClicked
 

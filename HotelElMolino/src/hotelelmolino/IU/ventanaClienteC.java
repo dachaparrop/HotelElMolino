@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hotelelmolino.IU;
+
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -11,6 +12,7 @@ import javax.swing.JOptionPane;
  * @author angie
  */
 public class ventanaClienteC extends javax.swing.JFrame {
+
     ventanaLogin ventanalogin = new ventanaLogin();
 
     /**
@@ -18,12 +20,13 @@ public class ventanaClienteC extends javax.swing.JFrame {
      */
     public ventanaClienteC() {
         initComponents();
-        if(ventanalogin.getTabla().equals("cliente")){
+        if (ventanalogin.getTabla().equals("cliente")) {
             jLabel2.setVisible(true);
             sugerenciaI.setVisible(false);
             reserva.setVisible(false);
-            jLabel1.setVisible(false);}
-        if(ventanalogin.getTabla().equals("sugerencia")){
+            jLabel1.setVisible(false);
+        }
+        if (ventanalogin.getTabla().equals("sugerencia")) {
             jLabel2.setVisible(false);
             sugerenciaI.setVisible(true);
             reserva.setVisible(false);
@@ -31,25 +34,26 @@ public class ventanaClienteC extends javax.swing.JFrame {
             jLabel4.setText("ID RESERVA");
             jLabel5.setText("FECHA");
             jLabel6.setText("COMENTARIO");
-            jLabel7.setVisible(false); 
-            jLabel8.setVisible(false); 
+            jLabel7.setVisible(false);
+            jLabel8.setVisible(false);
             jLabel9.setVisible(false);
             fourthText.setVisible(false);
             fifthText.setVisible(false);
-            sixthText.setVisible(false);}
-        if(ventanalogin.getTabla().equals("mascota")){
+            sixthText.setVisible(false);
+        }
+        if (ventanalogin.getTabla().equals("mascota")) {
             jLabel2.setVisible(false);
             sugerenciaI.setVisible(false);
             reserva.setVisible(false);
             jLabel1.setVisible(true);
             jLabel4.setText("ID DUEÑO");
             jLabel6.setText("RAZA");
-            jLabel7.setText("ESPECIE");   
-            jLabel8.setText("GENERO"); 
-            jLabel9.setVisible(false); 
+            jLabel7.setText("ESPECIE");
+            jLabel8.setText("GENERO");
+            jLabel9.setVisible(false);
             sixthText.setVisible(false);
         }
-        
+
     }
 
     /**
@@ -290,66 +294,68 @@ public class ventanaClienteC extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        if(ventanalogin.getTabla().equals("mascota")){
-        try {
-            // Preparamos la actualización del registro con id = 114
-            PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("Call pa_nuevaMascota(?,?,?,?,?)");
-            funcion.setInt(1, Integer.parseInt(firstText.getText()));    
-            funcion.setString(2, secondText.getText());  
-            funcion.setString(3, thirdText.getText());  
-            funcion.setString(4, fourthText.getText());  
-            funcion.setString(5, fifthText.getText());  
-            int retorno = funcion.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Ejecución exitosa");
-            firstText.setText(null);
-            secondText.setText(null);
-            thirdText.setText(null);
-            fourthText.setText(null);
-            fifthText.setText(null);
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar la ejecucion ... FAIL");
+        if (ventanalogin.getTabla().equals("mascota")) {
+            try {
+                // Preparamos la actualización del registro con id = 114
+                PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("Call pa_nuevaMascota(?,?,?,?,?)");
+                funcion.setInt(1, Integer.parseInt(firstText.getText()));
+                funcion.setString(2, secondText.getText());
+                funcion.setString(3, thirdText.getText());
+                funcion.setString(4, fourthText.getText());
+                funcion.setString(5, fifthText.getText());
+                int retorno = funcion.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Ejecución exitosa");
+                firstText.setText(null);
+                secondText.setText(null);
+                thirdText.setText(null);
+                fourthText.setText(null);
+                fifthText.setText(null);
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar la ejecucion ... FAIL");
+            }
         }
+        if (ventanalogin.getTabla().equals("cliente")) {
+            boolean vehiculo = false;
+            if (fifthText.getText() != null) {
+                vehiculo = true;
+            }
+            try {
+                // Preparamos la actualización del registro con id = 114
+                PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("Call pa_nuevoCliente(?,?,?,?,?,?,?)");
+                funcion.setInt(1, Integer.parseInt(firstText.getText()));
+                funcion.setString(2, secondText.getText());
+                funcion.setString(3, thirdText.getText());
+                funcion.setBoolean(4, vehiculo);
+                funcion.setString(5, fourthText.getText());
+                funcion.setString(6, fifthText.getText());
+                funcion.setInt(7, Integer.parseInt(sixthText.getText()));
+                int retorno = funcion.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Ejecución exitosa");
+                firstText.setText(null);
+                secondText.setText(null);
+                thirdText.setText(null);
+                fourthText.setText(null);
+                fifthText.setText(null);
+                sixthText.setText(null);
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar la ejecucion ... FAIL");
+            }
         }
-        if(ventanalogin.getTabla().equals("cliente")){
-            boolean vehiculo=false;
-            if(fifthText.getText()!=null){vehiculo=true;}
-        try {
-            // Preparamos la actualización del registro con id = 114
-            PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("Call pa_nuevoCliente(?,?,?,?,?,?,?)");
-            funcion.setInt(1, Integer.parseInt(firstText.getText()));  
-            funcion.setString(2, secondText.getText());  
-            funcion.setString(3, thirdText.getText());  
-            funcion.setBoolean(4, vehiculo); 
-            funcion.setString(5, fourthText.getText());  
-            funcion.setString(6, fifthText.getText());  
-            funcion.setInt(7, Integer.parseInt(sixthText.getText()));  
-            int retorno = funcion.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Ejecución exitosa"); 
-            firstText.setText(null);
-            secondText.setText(null);
-            thirdText.setText(null);
-            fourthText.setText(null);
-            fifthText.setText(null);
-            sixthText.setText(null);
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar la ejecucion ... FAIL");
-        } 
-        }
-        if(ventanalogin.getTabla().equals("sugerencia")){
-        try {
-            // Preparamos la creacion del registro en la tabla obra
-            PreparedStatement insertar = ventanalogin.getConexion().prepareStatement("call pa_nuevaSugerencia(?,?,?)");
-            insertar.setInt(1, Integer.parseInt(firstText.getText()));
-            insertar.setDate(2, Date.valueOf(secondText.getText()));
-            insertar.setString(3, thirdText.getText()); 
-            int retorno = insertar.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Ejecución exitosa"); 
-            firstText.setText(null);
-            secondText.setText(null);
-            thirdText.setText(null);
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar insercion ... FAIL");
-        }
+        if (ventanalogin.getTabla().equals("sugerencia")) {
+            try {
+                // Preparamos la creacion del registro en la tabla obra
+                PreparedStatement insertar = ventanalogin.getConexion().prepareStatement("call pa_nuevaSugerencia(?,?,?)");
+                insertar.setInt(1, Integer.parseInt(firstText.getText()));
+                insertar.setDate(2, Date.valueOf(secondText.getText()));
+                insertar.setString(3, thirdText.getText());
+                int retorno = insertar.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Ejecución exitosa");
+                firstText.setText(null);
+                secondText.setText(null);
+                thirdText.setText(null);
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar insercion ... FAIL");
+            }
         }
     }//GEN-LAST:event_jButton1MouseClicked
 

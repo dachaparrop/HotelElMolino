@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package hotelelmolino.IU;
+
 import java.sql.*;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
@@ -12,17 +13,18 @@ import javax.swing.JOptionPane;
  * @author angie
  */
 public class ventanaReservaC extends javax.swing.JFrame {
+
     ventanaLogin ventanalogin = new ventanaLogin();
-    private boolean mascota = false;    
+    private boolean mascota = false;
 
     /**
      * Creates new form ventanaReservaC
      */
     public ventanaReservaC() {
         initComponents();
-        if(ventanalogin.getRol().equals("AtencionAlCliente")){
+        if (ventanalogin.getRol().equals("AtencionAlCliente")) {
             jLabel9.setText("FECHA SALIDA");
-            }
+        }
     }
 
     /**
@@ -320,13 +322,17 @@ public class ventanaReservaC extends javax.swing.JFrame {
         mascota = jCheckBox1.isSelected();
         int idDefault;
         LocalTime horaActual = LocalTime.now();
-        if (horaActual.getHour()>18 || horaActual.getHour()<6){idDefault=666888555;}else{idDefault=777999444;}
+        if (horaActual.getHour() > 18 || horaActual.getHour() < 6) {
+            idDefault = 666888555;
+        } else {
+            idDefault = 777999444;
+        }
         System.out.println(idDefault);
         System.out.println(horaActual.getHour());
-        System.out.println(horaActual.getHour()>18);
-        System.out.println(horaActual.getHour()<6);
-        if(ventanalogin.getRol().equals("AtencionAlCliente")){
-            try { 
+        System.out.println(horaActual.getHour() > 18);
+        System.out.println(horaActual.getHour() < 6);
+        if (ventanalogin.getRol().equals("AtencionAlCliente")) {
+            try {
                 PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("call pa_facturacion(?,?,?,?,?,?,?,?,?);");
                 funcion.setInt(1, Integer.parseInt(idCliente.getText()));
                 funcion.setInt(2, Integer.parseInt(cantDias.getText()));
@@ -346,16 +352,15 @@ public class ventanaReservaC extends javax.swing.JFrame {
                 idTrab.setText(null);
                 IdAdmin.setText(null);
                 cantHues.setText(null);
-                numCab.setText(null);                 
-        }catch (SQLException ex) {
+                numCab.setText(null);
+            } catch (SQLException ex) {
                 System.out.println("Imposible realizar la ejecucion ... FAIL");
                 System.out.println("Error de SQL: " + ex.getMessage());
                 System.out.println("SQLState: " + ex.getSQLState());
                 System.out.println("Código de error: " + ex.getErrorCode());
                 ex.printStackTrace();
             }
-        }
-        else{     
+        } else {
             try {
                 // Preparamos la actualización del registro con id = 114
                 PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("call pa_facturacion(?,?,?,?,?,?,?,?,?);");
@@ -391,13 +396,13 @@ public class ventanaReservaC extends javax.swing.JFrame {
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
-        String rol =ventanalogin.getRol();
+        String rol = ventanalogin.getRol();
         this.dispose();
-        if (rol.equals("AtencionAlCliente")){
+        if (rol.equals("AtencionAlCliente")) {
             ventanaPrincipalAtencionAlCliente VentanaPrincipalJefe = new ventanaPrincipalAtencionAlCliente();
             VentanaPrincipalJefe.setVisible(true);
         }
-        if (rol.equals("AdministradorReservas")){
+        if (rol.equals("AdministradorReservas")) {
             ventanaPrincipalAdministradorReservas VentanaPrincipalJefe = new ventanaPrincipalAdministradorReservas();
             VentanaPrincipalJefe.setVisible(true);
         }
@@ -433,22 +438,26 @@ public class ventanaReservaC extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        if (jCheckBox1.isSelected()){mascota=true;} else{mascota=false;}
+        if (jCheckBox1.isSelected()) {
+            mascota = true;
+        } else {
+            mascota = false;
+        }
         try {
-            int resultado=0;
+            int resultado = 0;
             PreparedStatement preparedStatement = ventanalogin.getConexion().prepareStatement("select fun_facturacion(?,?) as resultado");
-                preparedStatement.setInt(1, Integer.parseInt(cantDias.getText()));
-                preparedStatement.setBoolean(2, mascota);
+            preparedStatement.setInt(1, Integer.parseInt(cantDias.getText()));
+            preparedStatement.setBoolean(2, mascota);
             // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
             // Obtener el resultado de la función
             if (resultSet.next()) {
                 resultado = resultSet.getInt("resultado");
             }
-                JOptionPane.showMessageDialog(null, "Resultado de la función: " + resultado);
-            } catch (SQLException ex) {
-                System.out.println("Imposible realizar la ejecucion ... FAIL");
-            }        
+            JOptionPane.showMessageDialog(null, "Resultado de la función: " + resultado);
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar la ejecucion ... FAIL");
+        }
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -466,7 +475,7 @@ public class ventanaReservaC extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         try {
-            int resultado=0;
+            int resultado = 0;
             CallableStatement preparedStatement = ventanalogin.getConexion().prepareCall("call pa_disponibilidad(?,?,@cantDispo);");
             preparedStatement.setInt(1, Integer.parseInt(cantHues.getText()));
             preparedStatement.setDate(2, Date.valueOf(fechaIn.getText()));
@@ -475,8 +484,8 @@ public class ventanaReservaC extends javax.swing.JFrame {
             while (resultSet.next()) {
                 resultado++;
             }
-                JOptionPane.showMessageDialog(null, "Resultado de la función: " + resultado);
-            } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Resultado de la función: " + resultado);
+        } catch (SQLException ex) {
             System.out.println("Imposible realizar la ejecución ... FAIL");
             System.out.println("Error de SQL: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
