@@ -21,6 +21,9 @@ public class ventanaR extends javax.swing.JFrame {
      */
     public ventanaR() {
         initComponents();
+        jButton2.setVisible(false);
+        jTextField1.setVisible(false);
+        jLabel1.setVisible(false);
     }
 
     /**
@@ -40,6 +43,9 @@ public class ventanaR extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,7 +60,6 @@ public class ventanaR extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel6.setText(ventanalogin.getTabla());
 
-        jButton6.setBackground(null);
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/regresra.png"))); // NOI18N
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);
@@ -84,6 +89,17 @@ public class ventanaR extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton2.setText("BUSCAR");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("ID");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -97,17 +113,26 @@ public class ventanaR extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jButton1)
-                .addGap(53, 53, 53)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(227, 227, 227)
                 .addComponent(jLabel3)
                 .addGap(73, 246, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,17 +143,22 @@ public class ventanaR extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(51, 51, 51))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
-                        .addGap(129, 129, 129))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(142, 142, 142))))
+                        .addGap(129, 129, 129))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,23 +251,6 @@ public class ventanaR extends javax.swing.JFrame {
             System.out.println("Imposible realizar consulta ... FAIL");
         }        
         }
-        if(rol.equals("AdministradorReservas")&& ventanalogin.getTabla().equals("servicios")){
-            try {            
-            Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from vista_admin_reserva_cabaña_servicio"); 
-            while (rs2.next()) {
-                datos.add(
-                        "Número de cabaña: " + rs2.getInt(1)
-                        + "\tCapacidad: " + rs2.getInt(2)
-                        + "\t\tCamas Dobles: " + rs2.getInt(3)
-                        + "\tCamas Sencillas: " + rs2.getInt(4)
-                        + "\tHabitaciones: " + rs2.getInt(5)
-                                + "\tServicio que tiene: " + rs2.getString(6)+"\n");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }        
-        }
         if(rol.equals("AdministradorReservas")&& ventanalogin.getTabla().equals("sugerencia")){
             try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
@@ -277,10 +290,90 @@ public class ventanaR extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
         }        
-        }      
+        }  
+        if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("mascota")){
+            try {            
+            Statement s2 = ventanalogin.getConexion().createStatement();
+            ResultSet rs2 = s2.executeQuery("select * from mascota"); 
+            while (rs2.next()) {
+                datos.add(
+                        "Id Dueño: " + rs2.getInt(1)
+                        + "\tNombre mascota: " + rs2.getString(2)
+                        + "\tRaza: " + rs2.getString(3)
+                        + "\t\tEspecie: " + rs2.getString(4)
+                        + "\t\tGénero: " + rs2.getString(5)+"\n");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }}
+            if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("cliente")){
+            try {            
+            Statement s2 = ventanalogin.getConexion().createStatement();
+            ResultSet rs2 = s2.executeQuery("select * from cliente"); 
+            while (rs2.next()) {
+                datos.add(
+                        "Id: " + rs2.getInt(1)
+                        + "\t\tNombre: " + rs2.getString(2)
+                        + "\t\tApellido: " + rs2.getString(3)
+                        + "\t\tVehículo: " + rs2.getString(4)
+                        + "\t\tNacionalidad: " + rs2.getString(5)
+                                + "\t\tTelefono: " + rs2.getInt(6)+"\n");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }}
+            if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("reserva")){
+            try {            
+            Statement s2 = ventanalogin.getConexion().createStatement();
+            ResultSet rs2 = s2.executeQuery("select * from reserva"); 
+            while (rs2.next()) {
+                datos.add(
+                        "Id Reserva: " + rs2.getInt(1)
+                        + "\tCliente Id: " + rs2.getInt(2)
+                        + "\tCantidad de días: " + rs2.getInt(3)
+                        + "\tCheck In: " + rs2.getDate(4)
+                        + "\tCheck Out: " + rs2.getDate(5)
+                        + "\tCosto: " + rs2.getInt(6)
+                        + "\tMétodo de pago: " + rs2.getString(7)
+                        + "\tId Empleado: " + rs2.getInt(10)
+                        + "\tId Administrador: " + rs2.getInt(9)
+                                + "\tHuespedes: " + rs2.getInt(8)+"\n");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
+        }
+            }
+        if(rol.equals("AdministradorReservas") && (ventanalogin.getTabla().equals("mascota") || ventanalogin.getTabla().equals("cliente"))){
+            try {
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from vista_admin_reserva_huespedes");
+                while (rs.next()) {
+                    datos.add(
+                        "Id Cliente: " + rs.getInt(1)
+                        + "\tNombre: " + rs.getString(2)
+                        + "\tApellido: " + rs.getString(3)
+                        + "\tVehículo: " + rs.getString(4)
+                        + "\tNacionalidad: " + rs.getString(5)
+                        + "\tTelefono: " + rs.getInt(6)
+                        + "\tNombre Mascota: " + rs.getString(7)
+                        + "\tRaza: " + rs.getString(7)
+                        + "\tGénero: " + rs.getString(8)+"\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+            }
+        }
         jTextArea1.setText(""+datos);
         datos.clear();        
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,12 +413,15 @@ public class ventanaR extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

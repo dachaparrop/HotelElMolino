@@ -44,6 +44,11 @@ public class ventanaCR extends javax.swing.JFrame {
         jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton2.setBackground(null);
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/add.png"))); // NOI18N
@@ -152,6 +157,14 @@ public class ventanaCR extends javax.swing.JFrame {
         ventanaClienteC VentanaPrincipalJefe = new ventanaClienteC();
         VentanaPrincipalJefe.setVisible(true);}
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        if(ventanalogin.getRol().equals("AtencionAlCliente")){
+        ventanaR ventana = new ventanaR();
+        ventana.setVisible(true);   }
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
