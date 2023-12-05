@@ -320,10 +320,14 @@ public class ventanaReservaC extends javax.swing.JFrame {
         mascota = jCheckBox1.isSelected();
         int idDefault;
         LocalTime horaActual = LocalTime.now();
-        if (horaActual.getHour()>18&&horaActual.getHour()<6){idDefault=666888555;}else{idDefault=777999444;}
+        if (horaActual.getHour()>18 || horaActual.getHour()<6){idDefault=666888555;}else{idDefault=777999444;}
+        System.out.println(idDefault);
+        System.out.println(horaActual.getHour());
+        System.out.println(horaActual.getHour()>18);
+        System.out.println(horaActual.getHour()<6);
         if(ventanalogin.getRol().equals("AtencionAlCliente")){
             try { 
-                CallableStatement funcion = ventanalogin.getConexion().prepareCall("call pa_facturacion(?,?,?,?,?,?,?,?,?);");
+                PreparedStatement funcion = ventanalogin.getConexion().prepareStatement("call pa_facturacion(?,?,?,?,?,?,?,?,?);");
                 funcion.setInt(1, Integer.parseInt(idCliente.getText()));
                 funcion.setInt(2, Integer.parseInt(cantDias.getText()));
                 funcion.setDate(3, Date.valueOf(fechaIn.getText()));
@@ -333,7 +337,7 @@ public class ventanaReservaC extends javax.swing.JFrame {
                 funcion.setInt(7, Integer.parseInt(idTrab.getText()));
                 funcion.setInt(8, Integer.parseInt(numCab.getText()));
                 funcion.setBoolean(9, mascota);
-                funcion.executeUpdate();
+                int retorno = funcion.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Ejecución exitosa");
                 idCliente.setText(null);
                 cantDias.setText(null);
@@ -342,10 +346,13 @@ public class ventanaReservaC extends javax.swing.JFrame {
                 idTrab.setText(null);
                 IdAdmin.setText(null);
                 cantHues.setText(null);
-                numCab.setText(null);           
-                JOptionPane.showMessageDialog(null, "Ejecución exitosa");       
+                numCab.setText(null);                 
         }catch (SQLException ex) {
                 System.out.println("Imposible realizar la ejecucion ... FAIL");
+                System.out.println("Error de SQL: " + ex.getMessage());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("Código de error: " + ex.getErrorCode());
+                ex.printStackTrace();
             }
         }
         else{     
@@ -373,6 +380,7 @@ public class ventanaReservaC extends javax.swing.JFrame {
                 numCab.setText(null);
             } catch (SQLException ex) {
                 System.out.println("Imposible realizar la ejecucion ... FAIL");
+                ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_jButton1MouseClicked
@@ -458,16 +466,23 @@ public class ventanaReservaC extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         try {
+            int resultado=0;
             CallableStatement preparedStatement = ventanalogin.getConexion().prepareCall("call pa_disponibilidad(?,?,@cantDispo);");
             preparedStatement.setInt(1, Integer.parseInt(cantHues.getText()));
             preparedStatement.setDate(2, Date.valueOf(fechaIn.getText()));
 
-           int retorno = preparedStatement.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Resultado de la función: " + retorno);
-        } catch (SQLException ex) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                resultado++;
+            }
+                JOptionPane.showMessageDialog(null, "Resultado de la función: " + resultado);
+            } catch (SQLException ex) {
             System.out.println("Imposible realizar la ejecución ... FAIL");
-            ex.printStackTrace(); // Imprime detalles del error
-        } 
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

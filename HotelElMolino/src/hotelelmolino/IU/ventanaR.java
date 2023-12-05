@@ -198,7 +198,7 @@ public class ventanaR extends javax.swing.JFrame {
             while (rs2.next()) {
                 datos.add(
                         "Servicio: " + rs2.getString(1)
-                        + "\tCabaña que lo tiene: " + rs2.getInt(2)+"\n");
+                        + "\t\tCabaña que lo tiene: " + rs2.getInt(2)+"\n");
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
