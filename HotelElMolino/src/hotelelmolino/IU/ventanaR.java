@@ -241,7 +241,7 @@ public class ventanaR extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        if(rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("parqueadero")){
+        if((rol.equals("AtencionAlCliente") || rol.equals("AtencionAlCliente") )&& ventanalogin.getTabla().equals("parqueadero")){
             try {
             Statement s = ventanalogin.getConexion().createStatement();
             ResultSet rs = s.executeQuery("select * from "+ventanalogin.getTabla()); 
@@ -503,7 +503,7 @@ public class ventanaR extends javax.swing.JFrame {
             if(jTextField2.getText().equals("0")){         
             try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from sugerencia WHERE  sug_fecha = "+jTextField1.getText()+";"); 
+            ResultSet rs2 = s2.executeQuery("select * from sugerencia WHERE  sug_fecha = '"+jTextField1.getText()+"' ;"); 
             while (rs2.next()) {
                 datos.add(
                         "Id: " + rs2.getInt(1)
@@ -540,7 +540,7 @@ public class ventanaR extends javax.swing.JFrame {
         }else{
                 try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from sugerencia WHERE  sug_res_id = "+jTextField2.getText()+" AND sug_fecha "+jTextField1.getText()+";"); 
+            ResultSet rs2 = s2.executeQuery("select * from sugerencia WHERE  sug_res_id = "+jTextField2.getText()+" AND sug_fecha '"+jTextField1.getText()+"' ;"); 
             while (rs2.next()) {
                 datos.add(
                         "Id: " + rs2.getInt(1)
@@ -701,7 +701,7 @@ public class ventanaR extends javax.swing.JFrame {
             try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
             ResultSet rs2 = s2.executeQuery("select * from cliente WHERE cli_apellido = '"+jTextField2.getText()+"' ;"); 
-            if(rs2.next()) {
+            while(rs2.next()) {
                 datos.add(
                         "Id: " + rs2.getInt(1)
                         + "\t\tNombre: " + rs2.getString(2)
@@ -766,7 +766,7 @@ public class ventanaR extends javax.swing.JFrame {
         }}if(jTextField1.getText().equals("0")){
             try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from reserva WHERE res_check_in =  "+jTextField2.getText()+" OR res_check_out = "+jTextField2.getText()+";");  
+            ResultSet rs2 = s2.executeQuery("select * from reserva WHERE res_check_in =  '"+jTextField2.getText()+"' OR res_check_out = '"+jTextField2.getText()+"';");  
             while (rs2.next()) {
                 datos.add(
                         "Id Reserva: " + rs2.getInt(1)
@@ -789,7 +789,7 @@ public class ventanaR extends javax.swing.JFrame {
         }}else{
              try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from reserva WHERE res_cli_id= "+jTextField1.getText()+" AND (res_check_in =  "+jTextField2.getText()+" OR res_check_out = "+jTextField2.getText()+");");
+            ResultSet rs2 = s2.executeQuery("select * from reserva WHERE res_cli_id= "+jTextField1.getText()+" AND (res_check_in =  '"+jTextField2.getText()+"' OR res_check_out = '"+jTextField2.getText()+"');");
             while (rs2.next()) {
                 datos.add(
                         "Id Reserva: " + rs2.getInt(1)
