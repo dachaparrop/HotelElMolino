@@ -513,6 +513,10 @@ public class ventanaR extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
         }
         }
             if(jTextField1.getText().equals("0")){         
@@ -528,11 +532,15 @@ public class ventanaR extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
         }
         }else{
                 try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from sugerencia WHERE  sug_res_id = "+jTextField2.getText()+" AND sug_fecha 0 "+jTextField1.getText()+";"); 
+            ResultSet rs2 = s2.executeQuery("select * from sugerencia WHERE  sug_res_id = "+jTextField2.getText()+" AND sug_fecha "+jTextField1.getText()+";"); 
             while (rs2.next()) {
                 datos.add(
                         "Id: " + rs2.getInt(1)
@@ -542,6 +550,10 @@ public class ventanaR extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
         }
             }
         }
@@ -550,7 +562,7 @@ public class ventanaR extends javax.swing.JFrame {
             if(jTextField2.getText().equals("0")){
             try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from mascota WHERE  mas_cli_id= "+jTextField1.getText()+";"); 
+            ResultSet rs2 = s2.executeQuery("select * from mascota WHERE  mas_cli_id = "+jTextField1.getText()+";"); 
             while (rs2.next()) {
                 datos.add(
                         "Id Dueño: " + rs2.getInt(1)
@@ -561,11 +573,15 @@ public class ventanaR extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
         }}
             if(jTextField1.getText().equals("0")){
             try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from mascota WHERE  mas_nombre= "+jTextField2.getText()+";"); 
+            ResultSet rs2 = s2.executeQuery("select * from mascota WHERE  mas_nombre= '"+jTextField2.getText()+"';"); 
             while (rs2.next()) {
                 datos.add(
                         "Id Dueño: " + rs2.getInt(1)
@@ -576,10 +592,14 @@ public class ventanaR extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
         }}else{
             try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from mascota WHERE  mas_cli_id= "+jTextField1.getText()+"AND mas_nombre= "+jTextField2.getText()+");");
+            ResultSet rs2 = s2.executeQuery("select * from mascota WHERE  mas_cli_id= "+jTextField1.getText()+" AND mas_nombre= '"+jTextField2.getText()+"';");
             while (rs2.next()) {
                 datos.add(
                         "Id Dueño: " + rs2.getInt(1)
@@ -590,6 +610,10 @@ public class ventanaR extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
         }}}
        if(rol.equals("AdministradorReservas") && (ventanalogin.getTabla().equals("historial paseos"))){
            if(jTextField2.getText().equals("0")){
@@ -614,7 +638,7 @@ public class ventanaR extends javax.swing.JFrame {
            if(jTextField1.getText().equals("0")){
            try {
                 Statement s = ventanalogin.getConexion().createStatement();
-                ResultSet rs = s.executeQuery("select * from registro_paseos WHERE  mas_cli_id= "+jTextField2.getText()+";");
+                ResultSet rs = s.executeQuery("select * from registro_paseos WHERE  mas_nombre= '"+jTextField2.getText()+"';");
                 while (rs.next()) {
                     datos.add(
                         "Registro: " + rs.getInt(1)
@@ -633,7 +657,7 @@ public class ventanaR extends javax.swing.JFrame {
            else{
             try {
                 Statement s = ventanalogin.getConexion().createStatement();
-                ResultSet rs = s.executeQuery("select * from registro_paseos WHERE  mas_cli_id= "+jTextField1.getText()+" AND mas_nombre= "+jTextField2.getText()+");");
+                ResultSet rs = s.executeQuery("select * from registro_paseos WHERE  mas_cli_id= "+jTextField1.getText()+" AND mas_nombre= '"+jTextField2.getText()+"';");
                 while (rs.next()) {
                     datos.add(
                         "Registro: " + rs.getInt(1)
@@ -656,7 +680,7 @@ public class ventanaR extends javax.swing.JFrame {
            if(jTextField2.getText().equals("0")){
             try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from cliente WHERE cli_id= "+jTextField1.getText()+";"); 
+            ResultSet rs2 = s2.executeQuery("select * from cliente WHERE cli_id = "+jTextField1.getText()+";"); 
             while (rs2.next()) {
                 datos.add(
                         "Id: " + rs2.getInt(1)
@@ -668,12 +692,16 @@ public class ventanaR extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
         }}
            if(jTextField1.getText().equals("0")){
             try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from cliente WHERE  cli_apellido= "+jTextField2.getText()+";"); 
-            while (rs2.next()) {
+            ResultSet rs2 = s2.executeQuery("select * from cliente WHERE cli_apellido = '"+jTextField2.getText()+"' ;"); 
+            if(rs2.next()) {
                 datos.add(
                         "Id: " + rs2.getInt(1)
                         + "\t\tNombre: " + rs2.getString(2)
@@ -684,10 +712,14 @@ public class ventanaR extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
         }}else{
                try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
-            ResultSet rs2 = s2.executeQuery("select * from cliente WHERE  cli_apellido= "+jTextField2.getText()+" AND cli_id = "+jTextField1.getText()+";"); 
+            ResultSet rs2 = s2.executeQuery("select * from cliente WHERE cli_apellido = '"+jTextField2.getText()+"' AND cli_id = "+jTextField1.getText()+";"); 
             while (rs2.next()) {
                 datos.add(
                         "Id: " + rs2.getInt(1)
@@ -699,6 +731,10 @@ public class ventanaR extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
         }           
            }       
        }
