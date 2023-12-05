@@ -162,8 +162,9 @@ public class ventanaRU extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         this.dispose();
-        ventanaR ventana = new ventanaR();
-        ventana.setVisible(true);
+        ventanalogin.setTabla("servicios");
+        ventanaR VentanaPrincipalCRUD = new ventanaR();
+        VentanaPrincipalCRUD.setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
 
     /**
