@@ -285,7 +285,7 @@ public class ventanaR extends javax.swing.JFrame {
             while (rs2.next()) {
                 datos.add(
                         "Nombre producto/s: " + rs2.getString(1)
-                        + "Proovedor: " + rs2.getString(2)
+                        + "\tProovedor: " + rs2.getString(2)
                         + "\tCosto Producto: " + rs2.getFloat(3)
                         + "\tCantidad por Habitacion: " + rs2.getInt(4)
                         + "\tCantidad en hotel: " + rs2.getInt(5)
