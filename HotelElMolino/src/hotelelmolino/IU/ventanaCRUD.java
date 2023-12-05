@@ -246,10 +246,15 @@ public class ventanaCRUD extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        // TODO add your handling code here:
         this.dispose();
-        ventanaClienteDelete ventana = new ventanaClienteDelete();
-        ventana.setVisible(true);
+        if (ventanalogin.getRol().equals("AdministradorInventarios") && ventanalogin.getTabla().equals("inventario")) {
+            ventanaInventarioDelete ventana = new ventanaInventarioDelete();
+            ventana.setVisible(true);
+        }
+        else{
+            ventanaClienteDelete ventana = new ventanaClienteDelete();
+            ventana.setVisible(true);
+        }
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
