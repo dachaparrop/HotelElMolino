@@ -40,19 +40,22 @@ public class ventanaRU extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(36, 149, 253));
         jPanel1.setAutoscrolls(true);
 
-        jButton3.setBackground(null);
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/search.png"))); // NOI18N
         jButton3.setText("BUSCAR");
         jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(null);
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/update.png"))); // NOI18N
         jButton2.setText("EDITAR");
         jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -73,7 +76,6 @@ public class ventanaRU extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel6.setText(ventanalogin.getTabla());
 
-        jButton6.setBackground(null);
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotelelmolino/IMAGENES/regresra.png"))); // NOI18N
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);
@@ -156,6 +158,13 @@ public class ventanaRU extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        ventanaR ventana = new ventanaR();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
