@@ -221,6 +221,50 @@ public class ventanaR extends javax.swing.JFrame {
             System.out.println("Imposible realizar consulta ... FAIL");
         }        
         }
+        if(rol.equals("AdministradorInventarios")&& ventanalogin.getTabla().equals("inventario")){
+            try {            
+            Statement s2 = ventanalogin.getConexion().createStatement();
+            ResultSet rs2 = s2.executeQuery("select * from inventario"); 
+            while (rs2.next()) {
+                datos.add(
+                        "Nombre producto/s: " + rs2.getString(1)
+                        + "Proovedor: " + rs2.getString(2)
+                        + "\tCosto Producto: " + rs2.getFloat(3)
+                        + "\tCantidad por Habitacion: " + rs2.getInt(4)
+                        + "\tCantidad en hotel: " + rs2.getInt(5)
+                        + "\tID admnistrador: " + rs2.getInt(6)+"\n");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }        
+        }
+        if(rol.equals("AdministradorInventarios")&& ventanalogin.getTabla().equals("historial inventario")){
+            try {            
+            Statement s2 = ventanalogin.getConexion().createStatement();
+            ResultSet rs2 = s2.executeQuery("select * from historial_inventario"); 
+            while (rs2.next()) {
+                datos.add(
+                        "ID Historial: " + rs2.getInt(1)
+                        + "\tAcción: " + rs2.getString(2)
+                        + "\t\tAntiguo Nombre: " + rs2.getString(3)
+                        + "\tNuevo Nombre: " + rs2.getString(4)
+                        + "\tAntiguo Proveedor: " + rs2.getString(5)
+                        + "\tNuevo Proveedor: " + rs2.getString(6)
+                        + "\tAntiguo Costo Producto: " + rs2.getBigDecimal(7)
+                        + "\tNuevo Costo Producto: " + rs2.getBigDecimal(8)
+                        + "\tAntigua Cantidad Habitación: " + rs2.getInt(9)
+                        + "\tNueva Cantidad Habitación: " + rs2.getInt(10)
+                        + "\tAntigua Cantidad Hotel: " + rs2.getInt(11)
+                        + "\tNueva Cantidad Hotel: " + rs2.getInt(12)
+                        + "\tAntiguo ID Administrador: " + rs2.getLong(13)
+                        + "\tNuevo ID Administrador: " + rs2.getLong(14)
+                        + "\tFecha Acción: " + rs2.getTimestamp(15)
+                        + "\tUsuario: " + rs2.getString(16) + "\n");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }        
+        }
         if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("servicios")){
             try {            
             Statement s2 = ventanalogin.getConexion().createStatement();
