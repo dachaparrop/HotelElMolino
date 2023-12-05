@@ -51,6 +51,16 @@ public class ventanaR extends javax.swing.JFrame {
         jLabel1.setVisible(true);
         jTextField2.setVisible(true);
         jLabel2.setVisible(true);}
+        if(rol.equals("Aseo")&& ventanalogin.getTabla().equals("cabaña")){
+            jButton2.setVisible(true);
+        jTextField1.setVisible(true);
+        jLabel1.setVisible(true);
+        jLabel1.setText("ID");}
+        if(rol.equals("Aseo")&& ventanalogin.getTabla().equals("inventario")){
+            jButton2.setVisible(true);
+        jTextField1.setVisible(true);
+        jLabel1.setVisible(true);
+        jLabel1.setText("Objeto");}
         if(rol.equals("AtencionAlCliente")&& ventanalogin.getTabla().equals("reserva")){
             jButton2.setVisible(true);
         jTextField1.setVisible(true);
@@ -241,6 +251,34 @@ public class ventanaR extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+        if((rol.equals("Aseo"))&& ventanalogin.getTabla().equals("inventario")){
+            try {
+            Statement s = ventanalogin.getConexion().createStatement();
+            ResultSet rs = s.executeQuery("select * from VistaAseoIn"); 
+            while (rs.next()) {
+                    datos.add(
+                        "Nombre objeto: " + rs.getString(1)
+                        + "\tCantidad del Hotel: " + rs.getInt(2)+"\n");}
+            
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }        
+        }if((rol.equals("Aseo"))&& ventanalogin.getTabla().equals("cabaña")){
+            try {
+            Statement s = ventanalogin.getConexion().createStatement();
+            ResultSet rs = s.executeQuery("select * from VistaAseoCa"); 
+            while (rs.next()) {
+                    datos.add(
+                        "ID empleado: " + rs.getInt(1)
+                        + "\tNombre: " + rs.getString(2)
+                        + "\tApellido: " + rs.getString(3)
+                                + "\tTelefono: " + rs.getInt(4)
+                                + "\tJornada: " + rs.getString(5)
+                        + "\tCabaña asignada: " + rs.getInt(6)+"\n");}
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }        
+        }
         if((rol.equals("AtencionAlCliente") || rol.equals("AtencionAlCliente") )&& ventanalogin.getTabla().equals("parqueadero")){
             try {
             Statement s = ventanalogin.getConexion().createStatement();
@@ -256,10 +294,15 @@ public class ventanaR extends javax.swing.JFrame {
                     datos.add(
                         "Número del parqueadero: " + rs.getInt(1)
                         + "\t" + ocupado
-                        + "\tCabaña asociada: " + rs.getInt(3)+"\n");}
+                        + "\tCabaña asociada: " + rs.getInt(3)+"\n");
+                }
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
         }        
         }
         if(rol.equals("AtencionAlCliente") && ventanalogin.getTabla().equals("cabaña")){
@@ -276,6 +319,10 @@ public class ventanaR extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             System.out.println("Imposible realizar consulta ... FAIL");
+            System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
+            ex.printStackTrace();
         }        
         }
         if(rol.equals("AdministradorInventarios")&& ventanalogin.getTabla().equals("inventario")){
@@ -813,6 +860,34 @@ public class ventanaR extends javax.swing.JFrame {
         
         }
             }
+        if((rol.equals("Aseo"))&& ventanalogin.getTabla().equals("inventario")){
+            try {
+            Statement s = ventanalogin.getConexion().createStatement();
+            ResultSet rs = s.executeQuery("select * from VistaAseoIn WHERE inv_nombre = '"+jTextField1.getText()+"' ;"); 
+            while (rs.next()) {
+                    datos.add(
+                        "Nombre objeto: " + rs.getString(1)
+                        + "\tCantidad del Hotel: " + rs.getInt(2)+"\n");}
+            
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }        
+        }if((rol.equals("Aseo"))&& ventanalogin.getTabla().equals("cabaña")){
+            try {
+            Statement s = ventanalogin.getConexion().createStatement();
+            ResultSet rs = s.executeQuery("select * from VistaAseoCa WHERE tra_id = '"+jTextField1.getText()+"' ;"); 
+            while (rs.next()) {
+                    datos.add(
+                        "ID empleado: " + rs.getInt(1)
+                        + "\tNombre: " + rs.getString(2)
+                        + "\tApellido: " + rs.getString(3)
+                                + "\tTelefono: " + rs.getInt(4)
+                                + "\tJornada: " + rs.getString(5)
+                        + "\tCabaña asignada: " + rs.getInt(6)+"\n");}
+        } catch (SQLException ex) {
+            System.out.println("Imposible realizar consulta ... FAIL");
+        }        
+        }
         jTextArea1.setText(""+datos);
         datos.clear();  
     }//GEN-LAST:event_jButton2MouseClicked

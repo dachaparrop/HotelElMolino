@@ -53,6 +53,10 @@ public class ventanaLogin extends javax.swing.JFrame {
             ventanaPrincipalCelador VentanaPrincipalJefe = new ventanaPrincipalCelador();
             VentanaPrincipalJefe.setVisible(true);
         }
+        if (rol.equals("Aseo")){
+            ventanaPrincipalAseo VentanaPrincipalJefe = new ventanaPrincipalAseo();
+            VentanaPrincipalJefe.setVisible(true);
+        }
     }
     
     /**
