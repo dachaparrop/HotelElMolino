@@ -404,11 +404,32 @@ public class ventanaR extends javax.swing.JFrame {
                         + "\tNacionalidad: " + rs.getString(5)
                         + "\tTelefono: " + rs.getInt(6)
                         + "\tNombre Mascota: " + rs.getString(7)
-                        + "\tRaza: " + rs.getString(7)
-                        + "\tGénero: " + rs.getString(8)+"\n");
+                        + "\tRaza: " + rs.getString(8)
+                        + "\tGénero: " + rs.getString(9)+"\n");
                 }
             } catch (SQLException ex) {
                 System.out.println("Imposible realizar consulta ... FAIL");
+            }
+        }
+        if(rol.equals("AdministradorReservas") && (ventanalogin.getTabla().equals("historial paseos"))){
+            try {
+                Statement s = ventanalogin.getConexion().createStatement();
+                ResultSet rs = s.executeQuery("select * from registro_paseos;");
+                while (rs.next()) {
+                    datos.add(
+                        "Registro: " + rs.getInt(1)
+                        + "\tId Cliente: " + rs.getInt(2)
+                        + "\tNombre Mascota: " + rs.getString(3)
+                        + "\tHora inicio: " + rs.getTime(4)
+                        + "\tHora finalizacion: " + rs.getTime(5)
+                        + "\tFecha: " + rs.getDate(6)
+                        + "\tCuidador: " + rs.getString(7)+"\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println("Imposible realizar consulta ... FAIL");
+                System.out.println("Error de SQL: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("Código de error: " + ex.getErrorCode());
             }
         }
         jTextArea1.setText(""+datos);
